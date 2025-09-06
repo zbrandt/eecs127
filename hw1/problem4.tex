@@ -1,0 +1,61 @@
+\begin{homeworkProblem}
+
+
+    Consider the set $\mathcal S$ defined as
+    \[
+        \begin{split}
+            \mathcal S=\{x\in\mathbb R^3 \;|\; x_1+2x_2+3x_3=0, \ \  3x_1+2x_2+x_3=0\}
+        \end{split}
+    \]
+
+    Show that $\mathcal S$ is a subspace. Determine its dimension and find a basis for it.
+    \\
+
+    \begin{solution}
+        The set $\mathcal{S}$ is a subset of $\mathbb{R}^3$ if
+        $$\forall \boldsymbol{x}, \boldsymbol{y} \in \mathcal{S} \Rightarrow \alpha 
+        \boldsymbol{x} + \beta \boldsymbol{y} \in \mathcal{S} \text{for all scalars }
+        \alpha, \beta \text{.}$$
+
+        Setting the equations of the set $\mathcal{S}$ equal to each other:
+        \[
+            \begin{aligned}
+                x_1 + 2x_2 + 3x_3 &= 3x_1 + 2x_2 + x_3 \\
+                -2x_1 + 0 + 2x_3 &= 0 \\
+                x_1 &= x_3
+            \end{aligned}
+        \]
+
+        Substituting for \(x_3\) into the first equation:
+        \[
+            \begin{aligned}
+                x_1 + 2x_2 + 3x_3 &= 0 \\
+                4x_1 + 2x_2 &= 0 \\
+                2x_1 + x_2 &= 0 \\
+                x_2 &= -2x_1
+            \end{aligned}
+        \]
+
+        Therefore, the set $\mathcal{S}$ can be expressed as a line:
+        \[
+            \begin{aligned}
+                \mathcal{S} &= \{(x_1, x_2, x_3) \in \mathbb{R}^3 \mid x_1 = x_3, x_2 = -2x_1\} \\
+                &= \{(x_1, -2x_1, x_1) \mid x_1 \in \mathbb{R}\} \\
+                &= \{x_1(1, -2, 1) \mid x_1 \in \mathbb{R}\}
+            \end{aligned}
+        \]
+
+        which is a subspace of $\mathbb{R}^3$. The dimension of this subspace is 1, 
+        and a basis for it is given by the vector 
+        \[
+            \begin{bmatrix}
+                1 \\
+                -2 \\
+                1
+            \end{bmatrix}
+            \text{.}
+        \] 
+
+    \end{solution}
+
+\end{homeworkProblem}

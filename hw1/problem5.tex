@@ -1,0 +1,54 @@
+\begin{homeworkProblem}
+
+    Consider the set $\mathcal P$ defined as
+    \[
+        \begin{split}
+            \mathcal P=\{x\in\mathbb R^3 \;|\; x_1+2x_2+3x_3=5\}
+        \end{split}
+    \]
+
+    Show that $\mathcal P$ is an affine set of dimension 2. To this end, express 
+    it as $x^{(0)}+\text{span}(x^{(1)},x^{(2)})$, where $x^{(0)}\in\mathcal P$ 
+    and $x^{(1)},x^{(2)}$ are linearly independent vectors. 
+    \\ 
+
+    \begin{solution}
+        The set $\mathcal{P} \in \mathbb{R}^3$ is affine if there is a subspace $V$
+        of $\mathbb{R}^3$ and a vector $\boldsymbol{x}^{(0)} \in \mathbb{R}^3$ such that
+        $$\mathcal{P} = \boldsymbol{x}^{(0)} + V,$$ i.e., a vector $\boldsymbol{x}^{(0)}$
+        is added to all vectors in the subspace $V$ to obtain $\mathcal{P}$.
+
+        $x_1 + 2x_2 + 3x_3 = 5$ defines a plane in $\mathbb{R}^3$, which is an affine set
+        of dimension 2, and constitutes the span of two vectors. The following equation
+        represents the equation as a dot product of a normal vector and an arbitrary
+        position vector on the plane:
+        \[
+            \begin{split}
+                \boldsymbol{n} \cdot \boldsymbol{r} &= \boldsymbol{n} \cdot \boldsymbol{r_0} \\
+                (1, 2, 3) \cdot (x_1, x_2, x_3) &= (1, 2, 3) \cdot (0, 1, 1) \\ 
+                x_1 + 2x_2 + 3x_3 &= 5
+            \end{split}
+        \]
+        where $\boldsymbol{r_0} = x^{(0)} = (0, 1, 1) \in \mathcal{P}$ is a point on the plane.
+        The normal vector $\boldsymbol{n} = (1, 2, 3)$ is orthogonal to the plane and allows
+        for finding two linearly independent vectors that make up the span:
+        \[
+            \begin{split}
+                \boldsymbol{n} \cdot \boldsymbol{v} &= 0 \\
+                (1, 2, 3) \cdot (x_1, x_2, x_3) &= 0 \\
+                x_1 + 2x_2 + 3x_3 &= 0
+            \end{split}
+        \]
+
+        Two vectors that satisfy the equation are $(-1, -1, 1)$ and $(1, -2, 1)$. 
+        Therefore, the set $\mathcal{P}$ can be expressed as:
+        \[
+            \begin{split}
+                \mathcal{P} &= \boldsymbol{x}^{(0)} + \text{span}(\boldsymbol{x}^{(1)}, \boldsymbol{x}^{(2)}) \\
+                &= (0, 1, 1) + \text{span}((-1, -1, 1), (1, -2, 1)).
+            \end{split}
+        \]
+        
+    \end{solution}
+
+\end{homeworkProblem}

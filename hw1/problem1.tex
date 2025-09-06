@@ -1,0 +1,43 @@
+\begin{homeworkProblem}
+    The Fruit Computer company produces two types of computers: Pear computers 
+    and Apricot computers. The following table shows the number of hours and 
+    the number of chips needed to make a computer as well as the equipment cost
+    and selling price:
+    \\
+    
+    \begin{tabular}{ l l l l l }
+        \hline
+        Computer & Labor & Chips & Equipment cost per unit (\$) & Selling price (\$) \\ \hline
+        Pear & 1 hour & 3 & 55 & 400 \\ 
+        Apricot & 2 hours & 6 & 100 & 900 \\
+        \hline
+    \end{tabular}
+    \\ \\
+    
+    A total of 3000 chips and 1300 hours of labor are available. The company 
+    needs to decide how many computers from each type should be made in order to 
+    maximize the profit.
+    \\
+    Formulate this problem as an optimization problem.
+    \\ \\
+    \begin{solution}
+        \[
+        \begin{array}{rl}
+        \min\limits_{\boldsymbol{x}} & \underset{f_0(\boldsymbol{x})}{\boxed{-400x_p - 900x_a + 55x_p + 100x_a}}, \\ [3ex]
+        \text{s.t.} & \underset{f_1(\boldsymbol{x})}{\boxed{x_p + 2x_a - 1300}} \leq 0, \\ [3ex]
+                    & \underset{f_2(\boldsymbol{x})}{\boxed{3x_p + 6x_a - 3000}} \leq 0, \\ [3ex]
+                    & \underset{f_3(\boldsymbol{x})}{\boxed{-x_p, -x_a}} \leq 0    
+        \end{array}
+        \]
+        where
+        \begin{itemize}
+            \item vector $x \in \mathbb{R}^2$ is the \textit{decision variable};
+            \item $f_0 : \mathbb{R}^2 \to \mathbb{R}$ is the \textit{objective function}, or \textit{cost};
+            \item $f_1 : \mathbb{R}^2 \to \mathbb{R}$ represents the \textit{labor-hour constraint};
+            \item $f_2 : \mathbb{R}^2 \to \mathbb{R}$ represents the \textit{chip constraint};
+            \item $f_3$ : $x_p$ and $x_a$ must be non-negative;
+        \end{itemize}
+    \end{solution}
+    
+
+\end{homeworkProblem}

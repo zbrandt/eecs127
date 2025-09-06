@@ -1,0 +1,40 @@
+\begin{homeworkProblem}
+
+    The Paradise City Police Department employs 30 police officers. Each officer 
+    works 5 days per week. The crime rate fluctuates with the day of the week, 
+    so the minimum number of police officers required each day depends on which 
+    day of the week it is: Saturday, 24; Sunday, 13; Monday, 15; Tuesday, 25; 
+    Wednesday, 26; Thursday, 18; Friday, 22. The police department wants to 
+    schedule police officers to minimize the number of officers whose days off 
+    are not consecutive.
+    \\ \\
+    Formulate this problem as an optimization problem (hint: define the variable 
+    $x_{ij}$, where $i, j \in \{1, 2, \ldots, 7\}$ and $i\neq j$, to be the number 
+    of officers who are scheduled to not work on days $i$ and $j$).
+    \\
+
+    \begin{solution}
+        \[
+            \begin{array}{rl}
+                \min\limits_{x_{ij}} & \underset{f_0}{\boxed{\sum_{i=1}^{7} \sum_{j=i+1}^{7} x_{ij}}}, \\ [3ex]
+                \text{s.t.} & \sum_{j=1, j \neq 1}^{7} x_{1j} \leq 6, \\ [2ex]
+                            & \sum_{j=1, j \neq 2}^{7} x_{2j} \leq 17, \\ [2ex]
+                            & \sum_{j=1, j \neq 3}^{7} x_{3j} \leq 15, \\ [2ex]
+                            & \sum_{j=1, j \neq 4}^{7} x_{4j} \leq 5, \\ [2ex]
+                            & \sum_{j=1, j \neq 5}^{7} x_{5j} \leq 4, \\ [2ex]
+                            & \sum_{j=1, j \neq 6}^{7} x_{6j} \leq 12, \\ [2ex]
+                            & \sum_{j=1, j \neq 7}^{7} x_{7j} \leq 8, \\ [3ex]
+                            & x_{ij} \geq 0 \text{ and integer}, \quad \forall i,j \in \{1,\ldots,7\}, i \neq j
+                        
+            \end{array}
+        \]
+        where
+        \begin{itemize}
+            \item \(x_{ij} \geq 0\) is an integer variable, where \(x_{ij}\) is the number of officers who are scheduled to not work on days \(i\) and \(j\);
+        \end{itemize}
+    
+
+    % Let \(x_{ij}\) be the number of officers who are scheduled to not work on days \(i\) and \(j\). The objective is to minimize the number of officers whose days off are not consecutive, which can be expressed as:
+    \end{solution}
+
+\end{homeworkProblem}

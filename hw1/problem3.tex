@@ -1,0 +1,30 @@
+\begin{homeworkProblem}
+    
+    A taxi company has $n$ taxis available and $n$ customers to be picked up as 
+    soon as possible. For every $i, j \in \{1, \ldots, n\}$, if taxi $i$ decides 
+    to pick up customer $j$, the amount of time (delay) to pick up the customer 
+    is $d_{ij}$. Each taxi is allowed to pick up only one customer. The goal is 
+    to assign each customer to a taxi so that the total delay (i.e., sum of the 
+    delays for all customers) is minimized.
+    \\ \\
+    Formulate this assignment problem as an optimization problem.
+    \\
+
+    \begin{solution}
+        \[
+            \begin{array}{rl}
+            \min\limits_{x_{ij}} & \underset{f_0(x_{ij})}{\boxed{\sum_{i=1}^{n} \sum_{j=1}^{n} d_{ij} x_{ij}}}, \\ [3ex]
+            \text{s.t.} & \underset{f_1(x_{ij})}{\boxed{-1 + \sum_{i=1}^{n} x_{ij} \leq 0 \quad \forall i \in \{1, \dots, n\}}}, \\ [3ex]
+                        % & \underset{f_2(x_{ij})}{\boxed{-1 + \sum_{j=1}^{n} x_{ij} \leq 0 \quad \forall j \in \{1, \dots, n\}}}
+            \end{array}
+        \]
+        where
+        \begin{itemize}
+            \item \(x_{ij} \in \{0, 1\}\) is a binary variable, where \(x_{ij} = 1\) if taxi \(i\) is assigned to customer \(j\) and \(x_{ij} = 0\) otherwise;
+            \item $f_0$ : the \textit{objective function}, or \textit{total delay} for all customers;
+            \item $f_1$ : the \textit{taxi assignment constraint}, each taxi can only pick up one customer;
+            % \item $f_2$ : the \textit{customer assignment constraint}, each customer must be picked up by exactly one taxi;
+        \end{itemize}
+
+    \end{solution}
+\end{homeworkProblem}
