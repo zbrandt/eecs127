@@ -16,21 +16,32 @@
     \begin{solution}
         \[
             \begin{array}{rl}
-                \min\limits_{x_{ij}} & \underset{f_0}{\boxed{\sum_{i=1}^{7} \sum_{j=i+1}^{7} x_{ij}}}, \\ [3ex]
-                \text{s.t.} & \sum_{j=1, j \neq 1}^{7} x_{1j} \leq 6, \\ [2ex]
-                            & \sum_{j=1, j \neq 2}^{7} x_{2j} \leq 17, \\ [2ex]
-                            & \sum_{j=1, j \neq 3}^{7} x_{3j} \leq 15, \\ [2ex]
-                            & \sum_{j=1, j \neq 4}^{7} x_{4j} \leq 5, \\ [2ex]
-                            & \sum_{j=1, j \neq 5}^{7} x_{5j} \leq 4, \\ [2ex]
-                            & \sum_{j=1, j \neq 6}^{7} x_{6j} \leq 12, \\ [2ex]
-                            & \sum_{j=1, j \neq 7}^{7} x_{7j} \leq 8, \\ [3ex]
-                            & x_{ij} \geq 0 \text{ and integer}, \quad \forall i,j \in \{1,\ldots,7\}, i \neq j
-                        
+                \min\limits_{\boldsymbol{x}} & \underset{f_0(\boldsymbol{x})}{\boxed{-x_{12} - x_{23} - x_{34} - x_{45} - x_{56} - x_{67} - x_{71}}}, \\ [3ex]
+                \text{s.t.} &  - 6 + \sum_{j=2, j \neq 1}^{7} x_{1j} \leq 0, \\ [3ex]
+                            & -17 + \sum_{j=1, j \neq 2}^{7} x_{2j} \leq 0, \\ [3ex]
+                            & - 15 + \sum_{j=1, j \neq 3}^{7} x_{3j} \leq 0, \\ [3ex]
+                            & -5 + \sum_{j=1, j \neq 4}^{7} x_{4j} \leq 0, \\ [3ex]
+                            & -4 + \sum_{j=1, j \neq 5}^{7} x_{5j} \leq 0, \\ [3ex]
+                            & -12 + \sum_{j=1, j \neq 6}^{7} x_{6j} \leq 0, \\ [3ex]
+                            & -8 + \sum_{j=1, j \neq 7}^{7} x_{7j} \leq 0, \\ [3ex]
+                            & x_{ij} - 30 \leq 0, \quad \forall i,j \in \{1, 2, \ldots, 7\}, i \neq j \\ [3ex]
+                            & - x_{ij} \leq 0 \quad \forall i,j \in \{1, 2, \ldots, 7\}, i \neq j
+
             \end{array}
         \]
         where
         \begin{itemize}
-            \item \(x_{ij} \geq 0\) is an integer variable, where \(x_{ij}\) is the number of officers who are scheduled to not work on days \(i\) and \(j\);
+            \item $x_{ij} \in \mathbb{Z}$ is the number of officers who are scheduled to not work on days \(i\) and \(j\),
+            where $i, j \in \{ 1, 2, \dots, 7 \}$ and $i \neq j$;
+            \item $f_0$ : $\mathbb{R}^7 \to \mathbb{R}$ is the \textit{objective function}, 
+            or the number of officers whose days off are not consecutive;
+            \item The first seven constraints represent the minimum number of officers required each day of the week,
+            where day 1 is Sunday, day 2 is Monday, day 3 is Tuesday, day 4 is Wednesday, day 5 is Thursday, day 6 is 
+            Friday, and day 7 is Saturday;
+            \item The eighth constraint prevents the number of officers scheduled to not work on any days $i$ and $j$
+            from exceeding 30 (the total number of officers employed);
+            \item The ninth constraint prevents the number of officers scheduled to not work on any days $i$ and $j$
+            from going negative;
         \end{itemize}
     
 
