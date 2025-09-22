@@ -1,0 +1,16 @@
+\section*{Problem 4}
+Given a natural number $k \in \{1, 2, \ldots\}$, a symmetric matrix $P\in\mathbb R^{n\times n}$, a vector $q\in\mathbb R^n$ and a scalar $r\in\mathbb R$, consider the optimization problem
+\begin{equation}
+\label{eq_1}
+\min_{x\in\mathbb R^n} \quad (x^\top P x)^k + q^\top x + r 
+\end{equation}
+Assume that $q$ is a nonzero vector. 
+\begin{itemize}
+\item [i)] Calculate the gradient of the function $q^\top x$.
+\item [ii)] Calculate the gradient of the function $x^\top P x$.
+\item [iii)] Calculate the gradient of the objective function of the optimization problem~\eqref{eq_1}.
+\item [iv)] Given a point $x^*$, write the necessary optimality condition for $x^*$ to be a local minimum of the optimization problem~\eqref{eq_1}.
+\item [v)] Assume that $q$ is not in the range of $P$. Prove that the optimization problem~\eqref{eq_1} cannot have any local minimum (hint: show that the necessary optimality condition has no solution).
+\item [vi)] Assume that $P$ is invertible. Given a  local minimum $x^*$ of the optimization problem~\eqref{eq_1}, show that there is a scalar $\alpha$ such that $x^*=\alpha P^{-1}q$. 
+\item [vii)] Again assume that $P$ is invertible. Solve for $\alpha$ in Part (vi) and calculate it in terms of only the known parameters $P,q,r,k$ (hint: Substitute the formula $x^*=\alpha P^{-1}q$ into the optimality condition and write it in terms of $\alpha$). 
+\end{itemize}
