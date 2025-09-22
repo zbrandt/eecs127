@@ -1,6 +1,39 @@
-\section*{Problem 2}
-Consider the  box $\mathcal S_1$ and ball $\mathcal S_2$ defined as
-\begin{equation}
-\mathcal S_1=\{x\in\mathbb R^2 \ |\ -3\leq x_1\leq 3,\ -1\leq x_2\leq 1\},\quad \mathcal S_2=\{x\in\mathbb R^2 \ |\  x_1^2+x_2^2\leq 2\}
-\end{equation}
-Given a point $z\in\mathbb R^2$, write an optimization problem in a standard form that finds the projection of $z$ onto the set $\mathcal S_1\cap \mathcal S_2$ (i.e., the solution of the optimization problem should correspond to the closest point in $\mathcal S_1\cap \mathcal S_2$ to $z$; note that you do not need to solve the optimization problem).
+\begin{homeworkProblem}
+    
+    Consider the  box $\mathcal S_1$ and ball $\mathcal S_2$ defined as
+    
+    \begin{equation}
+        \mathcal S_1=\{x\in\mathbb R^2 \ |\ -3\leq x_1\leq 3,\ -1\leq x_2\leq 1\},\quad \mathcal S_2=\{x\in\mathbb R^2 \ |\  x_1^2+x_2^2\leq 2\}
+    \end{equation}
+    
+    Given a point $z\in\mathbb R^2$, write an optimization problem in a standard 
+    form that finds the projection of $z$ onto the set $\mathcal S_1\cap \mathcal S_2$ 
+    (i.e., the solution of the optimization problem should correspond to the closest 
+    point in $\mathcal S_1\cap \mathcal S_2$ to $z$; note that you do not need to 
+    solve the optimization problem).
+    \\ \\ 
+    \begin{solution}
+        \[
+            \begin{array}{rl}
+            \arg\min\limits_{\boldsymbol{x}} & \underset{f_0(\boldsymbol{x})}{\boxed{\|\boldsymbol{x}-\boldsymbol{z}\|_2}}, \\ [3ex]
+            \text{s.t.} & \underset{f_1(\boldsymbol{x})}{\boxed{x_1 - 3}} \leq 0, \\ [3ex]
+                        & \underset{f_2(\boldsymbol{x})}{\boxed{-x_1 - 3}} \leq 0, \\ [3ex]
+                        & \underset{f_3(\boldsymbol{x})}{\boxed{x_2 - 1}} \leq 0, \\ [3ex]
+                        & \underset{f_4(\boldsymbol{x})}{\boxed{-x_2 - 1}} \leq 0, \\ [3ex]
+                        & \underset{f_5(\boldsymbol{x})}{\boxed{x_1^2 + x_2^2 - 2}} \leq 0.
+            \end{array}
+        \]
+        where
+        \begin{itemize}
+            \item $(x_1, x_2) \in \mathbb{R}^2$ is the \textit{decision variable};
+            \item $f_0 : \mathbb{R}^2 \to \mathbb{R}$ is the \textit{objective function}, or the \textit{Euclidean distance} between $x$ and $z$;
+            \item $f_1$ \& $f_2 : \mathbb{R}^2 \to \mathbb{R}$ represent the left and right bounds on the box $\mathcal{S}_1$;
+            \item $f_3$ \& $f_4 : \mathbb{R}^2 \to \mathbb{R}$ represent the upper and lower bounds on the box $\mathcal{S}_1$;
+            \item $f_5 : \mathbb{R}^2 \to \mathbb{R}$ represents the constraint on the ball $\mathcal{S}_2$.
+        \end{itemize}
+
+    \end{solution}
+
+\end{homeworkProblem}
+
+
