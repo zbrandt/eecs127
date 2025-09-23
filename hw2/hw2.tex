@@ -92,6 +92,7 @@
 \newcommand{\hmwkClassTime}{}
 \newcommand{\hmwkClassInstructor}{}
 \newcommand{\hmwkAuthorName}{\textbf{Zachary Brandt}}
+\newcommand{\hmwkAuthorEmail}{\texttt{zbrandt@berkeley.edu}}
 
 %
 % Title Page
@@ -105,7 +106,7 @@
     \vspace{3in}
 }
 
-\author{\hmwkAuthorName}
+\author{\hmwkAuthorName \\ \hmwkAuthorEmail}
 \date{}
 
 \renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
@@ -127,8 +128,11 @@
 \newcommand{\dx}{\mathrm{d}x}
 
 % Homework Solution Environment
-\newenvironment{solution}{\color{blue} \smallskip \textbf{\large Solution} \\}{\smallskip}
-
+\newenvironment{solution}[1][\large Solution]{
+  \color{blue}
+  \smallskip
+  \textbf{#1}
+}{}
 % Probability commands: Expectation, Variance, Covariance, Bias
 \newcommand{\E}{\mathrm{E}}
 \newcommand{\Var}{\mathrm{Var}}

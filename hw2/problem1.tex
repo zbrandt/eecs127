@@ -1,6 +1,7 @@
 \begin{homeworkProblem}
 
-Consider the subspace $\mathcal S=\text{span} (x^{(1)},x^{(2)},x^{(3)})$, where
+Consider the subspace $\mathcal S=\text{span} (x^{(1)},x^{(2)},x^{(3)})$, 
+where
 
 \begin{equation}
     x^{(1)}=\left[\begin{array}{c} 1\\ 1 \\ 1\end{array} \right], \quad 
@@ -10,12 +11,14 @@ Consider the subspace $\mathcal S=\text{span} (x^{(1)},x^{(2)},x^{(3)})$, where
 
 \begin{itemize}
     \item [i)] Find the dimension of $\mathcal S$.
-    \item [ii)] Calculate the projection of the point $\left[\begin{array}{c} 2\\ 3 \\ 5\end{array} \right]$ on $\mathcal S$.
+    \item [ii)] Calculate the projection of the point 
+    $\left[\begin{array}{c} 2\\ 3 \\ 5\end{array} \right]$ on $\mathcal S$.
 \end{itemize}
 
 \begin{solution}
-    The dimension of the subspace $\mathcal{S}$ is 2, because the span 
-    is not linearly independent. Vector $x^{(3)}$ is within the span of
+    
+    The dimension of the subspace $\mathcal{S}$ is 2, because the span is 
+    not linearly independent. Vector $x^{(3)}$ is within the span of 
     $x^{(1)}$ and $x^{(2)}$
 
     \[
@@ -25,19 +28,23 @@ Consider the subspace $\mathcal S=\text{span} (x^{(1)},x^{(2)},x^{(3)})$, where
         \left[\begin{array}{c} 0\\ 1 \\ 2\end{array} \right] = 
         x^{(3)}.
     \]
-    \\ 
+    \\
     The other two vectors span a plane with dimension 2. To calculate the
-    projection of the point $x = (2, 3, 5)$ onto $\mathcal{S}$,
-    I solve a system of equations to find $x^* = \alpha_1 x^{(1)}
-    + \alpha_2 x^{(2)}$. The vector pointing between $x$ and its 
-    projection onto the span should be normal to $x^{(1)}$ and $x^{(2)}$:
+    projection of the point $x = (2, 3, 5)$ onto $\mathcal{S}$, I solve a 
+    system of equations to find $x^* = \alpha_1 x^{(1)} + \alpha_2 x^{(2)}$. 
+    The vector pointing between $x$ and its projection onto the span should 
+    be normal to $x^{(1)}$ and $x^{(2)}$:
 
     \[
         \begin{split}
-            \langle x - x^*, x^{(1)} \rangle &= \langle x - \alpha_1 x^{(1)} - \alpha_2 x^{(2)}, x^{(1)} \rangle = 0 \\
-            \langle x - x^*, x^{(2)} \rangle &= \langle x - \alpha_1 x^{(1)} - \alpha_2 x^{(2)}, x^{(2)} \rangle = 0 \\
-            \Rightarrow \langle x, x^{(1)} \rangle &= \alpha_1 \langle x^{(1)}, x^{(1)} \rangle + \alpha_2 \langle x^{(2)}, x^{(1)} \rangle \\
-            \Rightarrow \langle x, x^{(2)} \rangle &= \alpha_1 \langle x^{(1)}, x^{(2)} \rangle + \alpha_2 \langle x^{(2)}, x^{(2)} \rangle
+            \langle x - x^*, x^{(1)} \rangle &= \langle x - \alpha_1 x^{(1)} 
+            - \alpha_2 x^{(2)}, x^{(1)} \rangle = 0 \\
+            \langle x - x^*, x^{(2)} \rangle &= \langle x - \alpha_1 x^{(1)} 
+            - \alpha_2 x^{(2)}, x^{(2)} \rangle = 0 \\
+            \Rightarrow \langle x, x^{(1)} \rangle &= \alpha_1 \langle x^{(1)}, 
+            x^{(1)} \rangle + \alpha_2 \langle x^{(2)}, x^{(1)} \rangle \\
+            \Rightarrow \langle x, x^{(2)} \rangle &= \alpha_1 \langle x^{(1)}, 
+            x^{(2)} \rangle + \alpha_2 \langle x^{(2)}, x^{(2)} \rangle
         \end{split}
     \]
 
@@ -49,12 +56,12 @@ Consider the subspace $\mathcal S=\text{span} (x^{(1)},x^{(2)},x^{(3)})$, where
         \end{split}
     \]
 
-    Solving this system of equations gives $\alpha_1 = \frac{10}{3}$ and $\alpha_2 = \frac{3}{2}$. 
-    Therefore, the projection of the point $x$ onto $\mathcal S$ is given by 
-    $$x^* = \frac{10}{3} x^{(1)} + \frac{3}{2} x^{(2)} = \left(\frac{11}{6}, \frac{10}{3}, \frac{29}{6}\right).$$
-    
+    Solving this system of equations gives $\alpha_1 = \frac{10}{3}$ and 
+    $\alpha_2 = \frac{3}{2}$. Therefore, the projection of the point $x$ 
+    onto $\mathcal S$ is given by 
+    $$x^* = \frac{10}{3} x^{(1)} + \frac{3}{2} x^{(2)} = 
+    \left(\frac{11}{6}, \frac{10}{3}, \frac{29}{6}\right).$$
 
 \end{solution}
 
 \end{homeworkProblem}
-

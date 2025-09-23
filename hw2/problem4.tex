@@ -1,7 +1,8 @@
 \begin{homeworkProblem}
     
-Given a natural number $k \in \{1, 2, \ldots\}$, a symmetric matrix $P\in\mathbb R^{n\times n}$,
-a vector $q\in\mathbb R^n$ and a scalar $r\in\mathbb R$, consider the optimization problem
+Given a natural number $k \in \{1, 2, \ldots\}$, a symmetric matrix 
+$P\in\mathbb R^{n\times n}$, a vector $q\in\mathbb R^n$ and a scalar 
+$r\in\mathbb R$, consider the optimization problem
 
     \begin{equation}
         \label{eq_1}
@@ -13,101 +14,104 @@ a vector $q\in\mathbb R^n$ and a scalar $r\in\mathbb R$, consider the optimizati
         \item [i)] Calculate the gradient of the function $q^\top x$.
         \item [ii)] Calculate the gradient of the function $x^\top P x$.
         \item [iii)] Calculate the gradient of the objective function of the 
-                    optimization problem~\eqref{eq_1}.
-        \item [iv)] Given a point $x^*$, write the necessary optimality condition 
-                    for $x^*$ to be a local minimum of the optimization problem~\eqref{eq_1}.
+            optimization problem~\eqref{eq_1}.
+        \item [iv)] Given a point $x^*$, write the necessary optimality 
+            condition for $x^*$ to be a local minimum of the optimization 
+            problem~\eqref{eq_1}.
         \item [v)] Assume that $q$ is not in the range of $P$. Prove that the 
-                    optimization problem~\eqref{eq_1} cannot have any local minimum 
-                    (hint: show that the necessary optimality condition has no solution).
-        \item [vi)] Assume that $P$ is invertible. Given a  local minimum $x^*$ of 
-                    the optimization problem~\eqref{eq_1}, show that there is a 
-                    scalar $\alpha$ such that $x^*=\alpha P^{-1}q$. 
-        \item [vii)] Again assume that $P$ is invertible. Solve for $\alpha$ in Part 
-                    (vi) and calculate it in terms of only the known parameters $P,q,
-                    r,k$ (hint: Substitute the formula $x^*=\alpha P^{-1}q$ into the 
-                    optimality condition and write it in terms of $\alpha$). 
+            optimization problem~\eqref{eq_1} cannot have any local minimum 
+            (hint: show that the necessary optimality condition has no solution).
+        \item [vi)] Assume that $P$ is invertible. Given a  local minimum $x^*$ 
+            of the optimization problem~\eqref{eq_1}, show that there is a 
+            scalar $\alpha$ such that $x^*=\alpha P^{-1}q$. 
+        \item [vii)] Again assume that $P$ is invertible. Solve for $\alpha$ in 
+            Part (vi) and calculate it in terms of only the known parameters 
+            $P,q,r,k$ (hint: Substitute the formula $x^*=\alpha P^{-1}q$ into 
+            the optimality condition and write it in terms of $\alpha$). 
     \end{itemize}
 
-    \begin{solution}
-        The gradient of the function $q^\top x$ is the vector $q$ itself:
-        \[
-            \nabla (q^\top x) = q.
-        \]
-
-        I found the gradient of the function $x^\top P x$ by expressing the function
-        in sum notation and then considering the partial derivative with respect to
-        any component $x_i$ of the vector $x$:
-        \begin{align*}
-            x^\top P x &= \sum_{i=1}^n \sum_{j=1}^n \left( x_i \cdot P_{ij} x_j \right).
-        \end{align*}
-
-        Taking the partial derivative with respect to $x_1$, for example, gives
-        \begin{align*}
-            \frac{\partial}{\partial x_1} (x^\top P x)
-            &= \sum_{j=1}^n \sum_{k=1}^n \frac{\partial}{\partial x_1} (x_j \cdot P_{jk} x_k) \\
-            &= \sum_{j=1}^n P_{1j} x_j + \sum_{i=1}^n P_{i1} x_i \\
-            &= (P x)_1 + (P^\top x)_1 \\
-            &= 2 (P x)_1,
-        \end{align*}
-
-        since $P$ is symmetric. Repeating this for each component of $x$ gives the
-        gradient
-        \[
-            \nabla (x^\top P x) = 2 P x.
-        \]
-
-        The gradient of the objective function is then the following:
-        \begin{align*}
-            \nabla \left( (x^\top P x)^k + q^\top x + r \right)
-            &= \nabla \left( (x^\top P x)^k \right) + \nabla (q^\top x) + \nabla r \\
-            &= k (x^\top P x)^{k-1} \nabla (x^\top P x) + q + 0 \\
-            &= k (x^\top P x)^{k-1} (2 P x) + q \\
-            &= 2 k (x^\top P x)^{k-1} P x + q.
-        \end{align*}
-
-        The necessary condition for $x^*$ to be a local minimum is that the gradient
-        of the objective function is zero at that point, when $x = x^*$,
-        \[
-            2 k (x^{\top} P x)^{k-1} P x + q = 0.
-        \]  
-
-        Now if $q$ is not in the range of $P$, then there is no solution. 
-        I rearrange the equation to isolate $q$ on one side to make this clear:
-        \[
-            q = -2 k (x^{\top} P x)^{k-1} P x.
-        \]
-        The right-hand side is in the range of $P$ for any $x$, since everything before
-        the $P$ is a scalar multiple of $x$. That's why if $q$ is not in the range
-        of $P$, there is no solution to the equation.
-
-        Now assume that $P$ is invertible. Then, given a local minimum $x^*$, I can
-        rearrange the necessary condition to isolate $x^*$:
-        \begin{align*}
-            2 k (x^{*\top} P x^*)^{k-1} P x^* + q &= 0 \\
-            2 k (x^{*\top} P x^*)^{k-1} P x^* &= -q \\
-            P x^* &= -\frac{1}{2 k (x^{*\top} P x^*)^{k-1}} q \\
-            x^* &= -\frac{1}{2 k (x^{*\top} P x^*)^{k-1}} P^{-1} q.
-        \end{align*}
-        So letting $\alpha = -\frac{1}{2 k (x^{*\top} P x^*)^{k-1}}$ gives the desired result.
-
-        Finally, I substitute $x^* = \alpha P^{-1} q$ into the necessary condition and
-        solve for $\alpha$:
-        \begin{align*}
-            2 k (x^{*\top} P x^*)^{k-1} P x^* + q &= 0 \\
-            2 k ((\alpha P^{-   1} q)^\top P (\alpha P^{-1} q))^{k-1} P (\alpha P^{-1} q) + q &= 0 \\
-            2 k (\alpha^2 q^\top P^{-1} q)^{k-1} \alpha q + q &= 0 \\
-            2 k \alpha^{2k - 1} (q^\top P^{-1} q)^{k-1} q + q &= 0 \\
-            (2 k \alpha^{2k - 1} (q^\top P^{-1} q)^{k-1} + 1) q &= 0.
-        \end{align*}
-        Since $q$ is nonzero, the term in parentheses must be zero:
-        \begin{align*}
-            2 k \alpha^{2k - 1} (q^\top P^{-1} q)^{k-1} + 1 &= 0 \\
-            2 k \alpha^{2k - 1} (q^\top P^{-1} q)^{k-1} &= -1 \\
-            \alpha^{2k - 1} &= -\frac{1}{2 k (q^\top P^{-1} q)^{k-1}} \\
-            \alpha &= \left( -\frac{1}{2 k (q^\top P^{-1} q)^{k-1}} \right)^{\frac{1}{2k - 1}}.
-        \end{align*}
-        This gives $\alpha$ in terms of only the known parameters $P, q, k$. Note that
-        $r$ does not appear in the expression for $\alpha$, so it is not needed.
+    \begin{solution}[\large Solution]
+        \begin{itemize}
+            \item[i)] The gradient of the function $q^\top x$ is the vector $q$ itself:
+                \[
+                    \nabla (q^\top x) = q.
+                \]
+            \item[ii)] I found the gradient of the function $x^\top P x$ by expressing the 
+                function in sum notation and then considering the partial derivative 
+                with respect to any component $x_i$ of the vector $x$:
+                \begin{align*}
+                    x^\top P x &= \sum_{i=1}^n \sum_{j=1}^n \left( x_i \cdot P_{ij} x_j 
+                    \right).
+                \end{align*}
+                Taking the partial derivative with respect to $x_1$, for example, gives
+                \begin{align*}
+                    \frac{\partial}{\partial x_1} (x^\top P x)
+                    &= \sum_{j=1}^n \sum_{k=1}^n \frac{\partial}{\partial x_1} (x_j \cdot 
+                    P_{jk} x_k) \\
+                    &= \sum_{j=1}^n P_{1j} x_j + \sum_{i=1}^n P_{i1} x_i \\
+                    &= (P x)_1 + (P^\top x)_1 \\
+                    &= 2 (P x)_1,
+                \end{align*}
+                since $P$ is symmetric. Repeating this for each component of $x$ gives 
+                the gradient
+                \[
+                    \nabla (x^\top P x) = 2 P x.
+                \]
+            \item[iii)] The gradient of the objective function is then the following:
+                \begin{align*}
+                    \nabla \left( (x^\top P x)^k + q^\top x + r \right)
+                    &= \nabla \left( (x^\top P x)^k \right) + \nabla (q^\top x) + 
+                    \nabla r \\
+                    &= k (x^\top P x)^{k-1} \nabla (x^\top P x) + q + 0 \\
+                    &= k (x^\top P x)^{k-1} (2 P x) + q \\
+                    &= 2 k (x^\top P x)^{k-1} P x + q.
+                \end{align*}
+            \item[iv)] The necessary condition for $x^*$ to be a local minimum is that the 
+                gradient of the objective function is zero at that point, when 
+                $x = x^*$,
+                \[
+                    2 k (x^{\top} P x)^{k-1} P x + q = 0.
+                \]  
+            \item[v)] Now if $q$ is not in the range of $P$, then there is no solution. 
+                I rearrange the equation to isolate $q$ on one side to make this clear:
+                \[
+                    q = -2 k (x^{\top} P x)^{k-1} P x.
+                \]
+                The right-hand side is in the range of $P$ for any $x$, since 
+                everything before the $P$ is a scalar multiple of $x$. That's why if 
+                $q$ is not in the range of $P$, there is no solution to the equation.
+            \item[vi)] Now assume that $P$ is invertible. Then, given a local minimum $x^*$, 
+                I can rearrange the necessary condition to isolate $x^*$:
+                \begin{align*}
+                    2 k (x^{*\top} P x^*)^{k-1} P x^* + q &= 0 \\
+                    2 k (x^{*\top} P x^*)^{k-1} P x^* &= -q \\
+                    P x^* &= -\frac{1}{2 k (x^{*\top} P x^*)^{k-1}} q \\
+                    x^* &= -\frac{1}{2 k (x^{*\top} P x^*)^{k-1}} P^{-1} q.
+                \end{align*}
+                So letting $\alpha = -\frac{1}{2 k (x^{*\top} P x^*)^{k-1}}$ gives the 
+                answer in the form of $\alpha P^{-1} q$.
+            \item[vii)] Finally, I substitute $x^* = \alpha P^{-1} q$ into the necessary 
+                condition and solve for $\alpha$:
+                \begin{align*}
+                    2 k (x^{*\top} P x^*)^{k-1} P x^* + q &= 0 \\
+                    2 k ((\alpha P^{-1} q)^\top P (\alpha P^{-1} q))^{k-1} P (\alpha 
+                    P^{-1} q) + q &= 0 \\
+                    2 k (\alpha^2 q^\top P^{-1} q)^{k-1} \alpha q + q &= 0 \\
+                    2 k \alpha^{2k - 1} (q^\top P^{-1} q)^{k-1} q + q &= 0 \\
+                    (2 k \alpha^{2k - 1} (q^\top P^{-1} q)^{k-1} + 1) q &= 0.
+                \end{align*}
+                Since $q$ is nonzero, the term in parentheses must be zero:
+                \begin{align*}
+                    2 k \alpha^{2k - 1} (q^\top P^{-1} q)^{k-1} + 1 &= 0 \\
+                    2 k \alpha^{2k - 1} (q^\top P^{-1} q)^{k-1} &= -1 \\
+                    \alpha^{2k - 1} &= -\frac{1}{2 k (q^\top P^{-1} q)^{k-1}} \\
+                    \alpha &= \left( -\frac{1}{2 k (q^\top P^{-1} q)^{k-1}} 
+                    \right)^{\frac{1}{2k - 1}}.
+                \end{align*}
+                This gives $\alpha$ in terms of only the known parameters $P, q, k$. 
+                Note that $r$ does not appear in the expression for $\alpha$, so it is 
+                not needed.
+        \end{itemize}
 
     \end{solution}
 

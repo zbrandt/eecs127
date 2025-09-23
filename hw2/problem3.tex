@@ -1,7 +1,7 @@
 \begin{homeworkProblem}
-    A company has $n$ factories. Factory $i$ (for $i=1,2,...,n$) is located at 
-    point $(a_i,b_i)$ in the two-dimensional plane $\mathbb R^2$. The company 
-    wants to locate a warehouse at a point $(x_1,x_2)$ that minimizes 
+    A company has $n$ factories. Factory $i$ (for $i=1,2,...,n$) is located 
+    at point $(a_i,b_i)$ in the two-dimensional plane $\mathbb R^2$. The 
+    company wants to locate a warehouse at a point $(x_1,x_2)$ that minimizes 
     
     \begin{equation}
         \nonumber
@@ -9,25 +9,29 @@
     \end{equation}
     
     Find all possible values of the point  $(x_1^*,x_2^*)$ that satisfy the 
-    necessary condition for local optimality. 
-    \\ \\
-    \begin{solution}  
-        A function for the sum of the distances from each factory to the warehouse is:
+    necessary condition for local optimality. \\
+    
+    \begin{solution}
+
+        A function for the sum of the distances from each factory to the 
+        warehouse is:
         
         \[
             f(x_1, x_2) = \sum_{i=1}^n \left(\sqrt{(x_1 - a_i)^2 + (x_2 - b_i)^2}\right).
         \]
 
-        Since the square root of the function is only increasing, the arguments 
-        of the minimum of the function without the square root will be the same as
-        the arguments of the minimum of the function with the square root. Therefore,
-        I will minimize the following function:
+        Since the square root of the function is only increasing, the 
+        arguments of the minimum of the function without the square root 
+        will be the same as the arguments of the minimum of the function 
+        with the square root. Therefore, I will minimize the following 
+        function:
 
         \[
             g(x_1, x_2) = \sum_{i=1}^n \left((x_1 - a_i)^2 + (x_2 - b_i)^2\right).
         \]
 
-        The gradient of $g(x_1, x_2)$ is a vector of the two partial derivatives:
+        The gradient of $g(x_1, x_2)$ is a vector of the two partial 
+        derivatives:
 
         \[
             \nabla g(x_1, x_2) = 
@@ -47,7 +51,8 @@
             \end{bmatrix}.
         \]
 
-        Setting these equal to zero gives the necessary conditions for local optimality:
+        Setting these equal to zero gives the necessary conditions for 
+        local optimality:
         \[
             \begin{split}
                 2n x_1 - 2\sum_{i=1}^n a_i &= 0 \Rightarrow x_1 = \frac{1}{n}\sum_{i=1}^n a_i \\
