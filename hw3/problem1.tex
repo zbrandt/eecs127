@@ -1,0 +1,103 @@
+\begin{homeworkProblem}
+
+    Consider an  aerial system that moves in $\mathbb R^3$ according to the 
+    dynamics
+    \begin{equation}
+        x(k+1)=Ax(k)+Bu(k), \quad k=0,1,2,3
+    \end{equation}
+
+    where $x(k)\in\mathbb R^3$ is the position of the system at time $k \in 
+    \{0, 1, 2, 3, 4\}$ and $u(k) \in \mathbb R$ is the scalar input applied to 
+    the system at time $k$. Assume that the initial position $x(0)$ is equal 
+    to $[0 \ \ 0 \ \ 0]^T$. Given a target position $x_d\in\mathbb R^3$, the 
+    goal is to design the input sequence $u(0), u(1),u(2),u(3)$ to take the 
+    system to the target position $x_d$ at time $k=4$, i.e., $x(4)=x_d$. 
+
+    \begin{itemize}
+        \item [i)] Find a matrix $H \in \mathbb R^{3 \times 4}$ in terms of 
+        $A$ and $B$ with the property that
+        \begin{equation}
+            x(4) = H \left[ \begin{array}{c} 
+                        u(0) \\ 
+                        u(1) \\ 
+                        u(2) \\ 
+                        u(3) \end{array} 
+                    \right]
+        \end{equation}
+        
+        \item [ii)] Assume that 
+            \begin{equation}
+                \label{eq1}
+                A = \left[ \begin{array}{ccc} 
+                        2 & 0 & 0 \\ 
+                        -1 & 1 & 0 \\ 
+                        -1 & -1 & 1 \end{array}
+                    \right], \qquad 
+                B = \left[ \begin{array}{c} 
+                        1 \\ 
+                        -1 \\ 
+                        1 \end{array}
+                    \right]
+            \end{equation}
+            
+            Show that the vector $[ 1 \ \ 1\ \ 0]^T$ belongs to 
+            $\mathcal N(H^T)$ (note: you are allowed to use a calculator to 
+            compute $H$, but you cannot use a calculator or a computer code 
+            to study the null space of $H^T$ and the analysis should be done 
+            by hand). 
+
+        \item [iii)] Again, consider the system parameters given in
+            ~\eqref{eq1}. By studying the relationship between 
+            $\mathcal N(H^T)$ and $ \mathcal R(H)$, prove that there is no 
+            sequence of inputs that can take the system to the position 
+            $x_d=[ 1 \ \ 1\ \ 0]^T$ at time $4$.
+
+        \item [iv)] Again, consider the system parameters given in
+            ~\eqref{eq1}. By finding $\mathcal N(H^T)$ and using the relations 
+            $\mathcal N(H^T) \perp \mathcal R(H)$ and $\mathcal N(H^T) \oplus 
+            \mathcal R(H)= \mathbb R^3$, show that there exists a sequence of 
+            inputs to  take the system to the position $x_d$ at time $4$ if 
+            and only if $x_d$ belongs to the set
+
+            \begin{equation}
+                \{x\in\mathbb R^3\ | \ x_1+x_2=0\}
+            \end{equation}
+
+        \item [v)] \textbf{(Coding)} Now, assume that 
+            \begin{equation}
+                A= \left[ \begin{array}{ccc} 
+                    2 & 0 & 0 \\ 
+                    -1 & 1 & 0 \\ 
+                    -1 & -1 & 1 \end{array}
+                    \right], \qquad 
+                B= \left[ \begin{array}{c} 
+                    -1 \\ 
+                    -1 \\ 
+                    1 \end{array}
+                    \right]
+            \end{equation}
+
+            The goal is to find a sequence of inputs such that the total energy 
+            $u(0)^2 + u(1)^2 + u(2)^2 + u(3)^2$ is minimized and yet the system 
+            arrives at the target position $x_d=[ 3 \ \ 2\ \ 2]^T$ at time $4$. 
+            Formulate this as an optimization problem and write a code in CVX 
+            to solve the problem numerically. Plot the optimal trajectory 
+            (i.e., plot the optimal values of the points $x(0),...,x(4)$ in 
+            $\mathbb R^3$ and then connect each point to the next one (such 
+            as $x(1)$ to $x(2)$)).
+        
+        \item [vi)] \textbf{(Coding)} Consider the safety set 
+            \begin{equation}
+                \mathcal S=\{x \in \mathbb R^3 \ | \ -3.3 \leq x_i \leq 3.2,
+                \quad i=1,2,3\}
+            \end{equation}
+            
+            Assume that the state $x(k)$ must always stay in the safety set 
+            $\mathcal S$ for $k=0,1,...,4$. Redo Part (v) under this additional 
+            constraint and find the optimal input sequence. Compares the 
+            optimal trajectories and optimal energies (objective values) 
+            obtained in Parts (v) and (vi). 
+    \end{itemize}
+
+
+\end{homeworkProblem}
