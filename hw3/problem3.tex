@@ -11,5 +11,67 @@
     minimum of the optimization problem (Hint: A matrix $\left[ \begin{array}{cc} 
     a & b \\ b & c \end{array} \right]$ is positive definite if and only if 
     $a > 0$ and $ac - b^2 > 0$). 
+        
+    \begin{solution}[Proof]
+
+        To prove that \(x^*\) is a global minimum, the following first-order and 
+        second-order conditions must be true:
+        \[
+            \nabla f(x^*) = 0 \quad \text{and} \quad H_f(x^*) \succ 0
+        \]
+
+        For the first condition, the gradient of the objective function is:
+        \[
+            \nabla f(x) = \left[ \begin{array}{c}
+                e^{x_1 + x_2} + 4x_1 - x_2 - \cos(x_1 + x_2) \\
+                e^{x_1 + x_2} + 4x_2 - x_1 - \cos(x_1 + x_2)
+            \end{array} \right]
+        \]
+
+        Evaluating at \(x^* = \left[ \begin{array}{c} 0 \\ 0 \end{array} \right]\):
+        \[
+            \nabla f(x^*) = \left[ \begin{array}{c}
+                e^0 + 0 - 0 - \cos(0) \\
+                e^0 + 0 - 0 - \cos(0)
+            \end{array} \right] = \left[ \begin{array}{c} 1 - 1 \\ 1 - 1 \end{array} \right] = \left[ \begin{array}{c} 0 \\ 0 \end{array} \right]
+        \]
+
+        Therefore, $x^*$ could be a local minimum. For the second-order 
+        condition, the Hessian is:
+        \[
+            H_f(x) = \left[ \begin{array}{cc}
+                e^{x_1 + x_2} + 4 + \sin(x_1 + x_2) & e^{x_1 + x_2} - 1 + \sin(x_1 + x_2) \\
+                e^{x_1 + x_2} - 1 + \sin(x_1 + x_2) & e^{x_1 + x_2} + 4 + \sin(x_1 + x_2)
+            \end{array} \right]
+        \]
+
+        Evaluating at \(x^* = \left[ \begin{array}{c} 0 \\ 0 \end{array} \right]\):
+        \[
+            H_f(x^*) = \left[ \begin{array}{cc}
+                e^0 + 4 + \sin(0) & e^0 - 1 + \sin(0) \\
+                e^0 - 1 + \sin(0) & e^0 + 4 + \sin(0)
+            \end{array} \right] = \left[ \begin{array}{cc}
+                1 + 4 + 0 & 1 - 1 + 0 \\
+                1 - 1 + 0 & 1 + 4 + 0
+            \end{array} \right] = \left[ \begin{array}{cc}
+                5 & 0 \\
+                0 & 5
+            \end{array} \right]
+        \]
+
+        \(H_f(x^*)\) is positive definite if and only if $a > 0$ and \(ac - b^2 
+        > 0\). Here, \(a = 5\), \(b = 0\), and \(c = 5\):
+        \[
+            a = 5 > 0
+        \]
+        \[
+            ac - b^2 = 5 \cdot 5 - 0^2 = 25 > 0
+        \]
+
+        Therefore, \(H_f(x^*)\) is positive definite and the second-order 
+        condition is true as well. So \(x^* = \left[ \begin{array}{c} 0 \\ 
+        0 \end{array} \right]\) is a global minimum.
+
+    \end{solution}
 
 \end{homeworkProblem}
