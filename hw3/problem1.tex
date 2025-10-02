@@ -99,7 +99,6 @@
     \end{itemize}
 
     \begin{solution}
-    
         \begin{itemize}
             \item[i)] To find a matrix $H$ in terms of $A$ and $B$, I'll solve 
                 for $x(k)$ at times 1, 2, 3, and 4
@@ -224,14 +223,14 @@
                 the system to the position $x_d$ at time $4$ if and only if 
                 $x_d$ belongs to the set $\{x\in\mathbb R^3\ | \ x_1+x_2=0\}$, 
                 I'll first find the null space of $H^\top$. From part (ii), 
-                we know $[1, 1, 0]^\top \in \mathcal{N}(H^\top)$. Since $H$ is 
+                $[1, 1, 0]^\top \in \mathcal{N}(H^\top)$. Since $H$ is 
                 $3 \times 4$ and has rank 2 (the first two rows are linearly 
-                independent), we have $\dim(\mathcal{N}(H^\top)) = 3 - 2 = 1$. 
-                Therefore, $\mathcal{N}(H^\top) = \text{span}\{[1, 1, 0]^\top\}$.
-                Using $\mathcal{N}(H^\top) \perp \mathcal{R}(H)$, a vector $x_d
-                \in \mathcal{R}(H)$ is reachable if and only if $x_d \perp v$ 
-                for all $v \in \mathcal{N}(H^\top)$. Since $\mathcal{N}(H^\top) 
-                = \text{span}\{[1, 1, 0]^\top\}$, we need:
+                independent), $\dim(\mathcal{N}(H^\top)) = n - \text{rank}(H) = 
+                3 - 2 = 1$. So basis for the null space is $\mathcal{N}(H^\top) = 
+                \text{span}\{[1, 1, 0]^\top\}$. Using $\mathcal{N}(H^\top) \perp 
+                \mathcal{R}(H)$, a vector $x_d \in \mathcal{R}(H)$ is in range 
+                if and only if $x_d \perp v$ for all $v \in \mathcal{N}(H^\top)$. 
+                Then the following must be true:
                 \[
                     x_d^\top \left[\begin{array}{c} 1 \\ 1 \\ 0 \end{array} \right] = 0
                 \]
@@ -257,12 +256,15 @@
 
                 where $\boldsymbol{u} = [u(0) \ u(1) \ u(2) \ u(3)]^\top$ and
                 $x_d = [3 \ 2 \ 2]^\top$. I wrote a script in \texttt{problem1v.m}
-                to solve the problem numerically in CVX. Below is a plot of the
-                optimal trajectory.
+                to solve the problem numerically in CVX. The optimal sequence 
+                of inputs $\boldsymbol{u}$ is $u(0) = -1.4076$, $u(1) = 
+                2.8804$, $u(2) = 0.7120$, and $u(3) = -4.6848$. The minimized 
+                total energy is $32.7323$. Below is a plot of the optimal 
+                trajectory.
                 
-                \begin{figure}[h!] % h! = "here" as close as possible
+                \begin{figure}[h!]
                     \centering
-                    \includegraphics[width=0.75\textwidth]{problem1v.png}
+                    \includegraphics[width=0.7\textwidth]{problem1v.png}
                 \end{figure}
 
             \pagebreak
@@ -279,12 +281,15 @@
 
                 where $\boldsymbol{u} = [u(0) \ u(1) \ u(2) \ u(3)]^\top$ and
                 $x_d = [3 \ 2 \ 2]^\top$. I wrote a script in \texttt{problem1vi.m}
-                to solve the problem numerically in CVX. Below is a plot of the
+                to solve the problem numerically in CVX. The optimal sequence 
+                of inputs $\boldsymbol{u}$ is $u(0) = -1.4833$, $u(1) = 
+                3.1833$, $u(2) = 0.3333$, and $u(3) = -4.5333$. The minimized 
+                total energy is $32.9961$. Below is a plot of the 
                 optimal trajectory.
 
-                \begin{figure}[h!] % h! = "here" as close as possible
+                \begin{figure}[h!]
                     \centering
-                    \includegraphics[width=0.75\textwidth]{problem1vi.png}
+                    \includegraphics[width=0.7\textwidth]{problem1vi.png}
                 \end{figure}
 
         \end{itemize}
