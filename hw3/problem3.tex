@@ -17,7 +17,7 @@
         To prove that \(x^*\) is a global minimum, the following first-order and 
         second-order conditions must be true:
         \[
-            \nabla f(x^*) = 0 \quad \text{and} \quad H_f(x^*) \succ 0
+            \nabla f(x^*) = 0 \quad \text{and} \quad H_f(x^*) \succ 0, \; \forall x
         \]
 
         For the first condition, the gradient of the objective function is:
@@ -45,31 +45,34 @@
             \end{array} \right]
         \]
 
-        Evaluating at \(x^* = \left[ \begin{array}{c} 0 \\ 0 \end{array} \right]\):
-        \[
-            H_f(x^*) = \left[ \begin{array}{cc}
-                e^0 + 4 + \sin(0) & e^0 - 1 + \sin(0) \\
-                e^0 - 1 + \sin(0) & e^0 + 4 + \sin(0)
-            \end{array} \right] = \left[ \begin{array}{cc}
-                1 + 4 + 0 & 1 - 1 + 0 \\
-                1 - 1 + 0 & 1 + 4 + 0
-            \end{array} \right] = \left[ \begin{array}{cc}
-                5 & 0 \\
-                0 & 5
-            \end{array} \right]
+        For $x^*$ to be a global minimum, $H_f(x^*)$ must be positive definite
+        for all $x$. $H_f(x^*)$ is positive definite if and only if $a > 0$ 
+        and $ac - b^2 > 0$. For the first condition, since $e^{x_1 + x_2} > 0$
+        and $\sin(x_1 + x_2) \geq -1$:
+        \[    
+            a = e^{x_1 + x_2} + 4 + \sin(x_1 + x_2) > 0 
         \]
 
-        \(H_f(x^*)\) is positive definite if and only if $a > 0$ and \(ac - b^2 
-        > 0\). Here, \(a = 5\), \(b = 0\), and \(c = 5\):
+        with the included $+4$. For the second condition:
         \[
-            a = 5 > 0
+            ac - b^2 = (e^{x_1 + x_2} + 4 + \sin(x_1 + x_2))^2 - 
+            (e^{x_1 + x_2} - 1 + \sin(x_1 + x_2))^2 > 0
+        \]
+        Substituting $e^{x_1 + x_2} + \sin(x_1 + x_2) = z$:
+        \[
+            ac - b^2 = (z + 4)^2 - (z - 1)^2 = 6z + 15 > 0
         \]
         \[
-            ac - b^2 = 5 \cdot 5 - 0^2 = 25 > 0
+            z > -2.5
         \]
 
-        Therefore, \(H_f(x^*)\) is positive definite and the second-order 
-        condition is true as well. So \(x^* = \left[ \begin{array}{c} 0 \\ 
+        Since $e^{x_1 + x_2} > 0$ and $\sin(x_1 + x_2) \geq -1$,
+        \[
+            z = e^{x_1 + x_2} + \sin(x_1 + x_2) > -1 > -2.5
+        \]
+
+        Therefore, \(H_f(x^*)\) is positive definite for all \(x\) and the 
+        second-order condition is true. So \(x^* = \left[ \begin{array}{c} 0 \\ 
         0 \end{array} \right]\) is a global minimum.
 
     \end{solution}
