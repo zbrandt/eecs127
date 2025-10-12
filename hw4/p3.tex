@@ -1,0 +1,36 @@
+\begin{homeworkProblem}
+
+    \textbf{(Coding)} Consider a picture of the Berkeley logo named 
+    Berkeley1.png that you can download from bCourses $\rightarrow$ Files 
+    $\rightarrow$ HW.
+    \begin{itemize}
+        \item [i)] Convert the image to a grayscale image, and store its data 
+        into a matrix $A$.
+        \item [ii)] Plot the singular values of $A$. To do so, draw the point 
+        $(k,\sigma_k)$ in $\mathbb R^2$ for $k=1,...,\min(m,n)$, where $m$ and 
+        $n$ denote the dimensions of $A$ and $\sigma_k$ is the $k^{\text{th}}$ 
+        largest singular value of $A$.
+        \item [iii)] Consider the optimization problem
+        \begin{equation}
+            \min_{B\in\mathbb R^{m\times n}}\|A-B\|_F,\qquad \text{s.t.}\qquad 
+            \text{rank}(B)\leq k
+        \end{equation}
+        and consider the error $e_k=\frac{\|A-B^*\|_F^2}{\|A\|_F^2}$, where 
+        $B^*$ is an optimal solution. Solve the above optimization problem in 
+        three scenarios of $k=30$, $k=80$ and $k=100$. For each case, report 
+        the error $e_k$ and the percentage $\frac{k}{\min(m,n)}\times 100$ 
+        (which shows what percentage of the singular values of $A$ is used), 
+        and also draw the grayscale image corresponding to $B^*$ (note: you do 
+        not need to report the matrix $B^*$ in your homework submission and 
+        only the image together with the code is enough).
+
+        \item [iv)] Redo Parts (i), (ii), and (iii) for the Berkeley campus 
+        picture Berkeley2.png that you can download from bCourses 
+        $\rightarrow$ Files $\rightarrow$ HW.
+    \end{itemize}
+
+    \begin{solution}
+        % Solution content will go here
+    \end{solution}
+
+\end{homeworkProblem}

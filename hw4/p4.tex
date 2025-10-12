@@ -1,0 +1,38 @@
+\begin{homeworkProblem}
+
+    Consider the least-squares problem
+    \begin{equation}
+        \min_x \|Ax-y\|
+    \end{equation}
+    where $A\in\mathbb R^{2\times 3}$ and $y\in\mathbb R^2$. Assume that 
+    \begin{equation}
+        A=\left[\begin{array}{ccc} 1 & 1 &1 \\ 2& 2 & 2 \end{array}\right],
+        \qquad 
+        y=\left[\begin{array}{cc} 4 \\ 7 \end{array}\right]
+    \end{equation}
+    \begin{itemize}
+        \item [i)]
+        Show that the set of all solutions is equal to
+        \begin{equation}
+            S=\left\{x^*\in\mathbb R^3 \ \Big| \ x_1^*+x_2^*+x_3^*=\frac{18}{5}
+            \right\}
+        \end{equation}
+        \item [ii)] Assume that $y$ is perturbed to $y+\Delta y$. Find the set 
+        of all solutions of the perturbed least-squares problem 
+        $\min_x \|Ax-(y+\Delta y)\|$. 
+
+        \item [iii)] Assume that $y$ is perturbed to $y+\Delta y$, where 
+        $\Delta y$ can take any value in the set $\{\Delta y \ |\ 
+        \|\Delta y\|\leq 1\}$. Find the set of all possibilities for the 
+        minimum-norm solution of the perturbed least-squares problem 
+        $\min_x \|Ax-(y+\Delta y)\|$ (hint: write the ellipsoidal formula for 
+        $\Delta x$ and compute the semi-axes and lengths of the ellipse; you 
+        can use a computer code for SVD calculations).
+         
+    \end{itemize}
+
+    \begin{solution}
+        % Solution content will go here
+    \end{solution}
+
+\end{homeworkProblem}

@@ -1,0 +1,55 @@
+\begin{homeworkProblem}
+
+    An exam with $m$ questions is given to $n$ students. The instructor 
+    collects all the grades in an $n\times m$ matrix $G$ where $G_{ij}$ 
+    shows the grade of student $i\in\{1,2,...,n\}$ for question 
+    $j\in\{1,2....,m\}$. By analyzing the matrix $G$, the goal is to 
+    design a difficulty score for each question that shows the difficulty 
+    level of that question. As a naive approach, one may consider the 
+    average grade $\frac{\sum_{i=1}^n G_{ij}}{n}$ as the difficulty score 
+    of question $j$. To understand the issue with this difficulty score, 
+    assume that $n=m=2$ and $G$ is equal to
+    \begin{equation}
+        G=\left[\begin{array}{cc} 50& 100 \\ 50 & 0 \end{array}\right]
+    \end{equation}
+    where the minimum and maximum grades for each question are 0 and 100. 
+    In this example, both questions have the same average grade of 50. Both 
+    students have done poorly on question 1. For question 2, one student 
+    got the highest grade possible while the other student got 0 (which may 
+    imply that the student was not prepared for that question rather than 
+    the question being hard). Question 1 seems to be much harder than 
+    question 2 due to the distribution of the grades while the average 
+    grades cannot provide any useful information. To address this issue for 
+    arbitrary values of $n$ and $m$, we propose an optimization model for 
+    the design of difficulty scores.
+    \begin{itemize}
+        \item [i)] Consider the optimization problem
+        \begin{equation}
+            \min_{B\in\mathbb R^{n\times m}} \|G-B\|_F\qquad\text{s.t.}\qquad 
+            \text{rank}(B)\leq 1
+        \end{equation}
+        We decompose the optimal solution $B^*$ as $xy^T$, where 
+        $x \in \mathbb R^n$ and $y \in \mathbb R^m$. Assume that $x,y\geq 0$ 
+        (note: if no student receives a zero score on any question, then it can 
+        be proven that $x$ and $y$ are automatically nonnegative vectors). 
+        Assume that the error $\frac{||G-B^*\|_F^2}{\|G\|_F^2}$ is small. 
+        Explain how a difficulty score can be designed for each question in 
+        terms of $x$ and $y$.
+
+        \item [ii)] Consider the case with $n=3$ and $m=5$, together with the 
+        grade matrix
+        \begin{equation}
+            G=\left[\begin{array}{ccccc} 100 & 90 & 100 & 80 & 70 \\ 
+            80 & 70& 60& 70& 80\\ 60& 50& 40& 50 & 60 \end{array}\right]
+        \end{equation}
+        Using Part (i), design a difficulty score for each question, and rank 
+        the questions from the hardest to the easiest based on their scores 
+        (note: you can use a computer code for SVD calculations). 
+
+    \end{itemize}
+
+    \begin{solution}
+        % Solution content will go here
+    \end{solution}
+
+\end{homeworkProblem}
