@@ -29,7 +29,269 @@
     \end{itemize}
 
     \begin{solution}
-        % Solution content will go here
+        \begin{itemize}
+            \item[i)] If the dot product of each pair of columns in $A$ is 
+                zero, then the columns are orthogonal.
+                \[
+                    a_1 = \begin{bmatrix} 2 \\ -1 \\ 2 \end{bmatrix}, \quad
+                    a_2 = \begin{bmatrix} -1 \\ 2 \\ 2 \end{bmatrix}, \quad
+                    a_3 = \begin{bmatrix} 2 \\ 2 \\ -1 \end{bmatrix}
+                \]
+                \[
+                    \begin{split}
+                        a_1 \cdot a_2 &= 2 \cdot (-1) + (-1) \cdot 2 + 2 \cdot 2 = -2 - 2 + 4 = 0 \\
+                        a_1 \cdot a_3 &= 2 \cdot 2 + (-1) \cdot 2 + 2 \cdot (-1) = 4 - 2 - 2 = 0 \\
+                        a_2 \cdot a_3 &= (-1) \cdot 2 + 2 \cdot 2 + 2 \cdot (-1) = -2 + 4 - 2 = 0
+                    \end{split}
+                \]
+                
+                Since the dot products are all equal to zero, the columns of
+                $A$ are orthogonal. Using this fact, the singular values of $A$
+                are the norms of its columns, since $A^\top A$ is a diagonal 
+                matrix with the squared norms of the columns on the diagonal.
+                \[
+                    \begin{split}
+                        \sigma_1 &= \|a_1\| = \sqrt{2^2 + (-1)^2 + 2^2} = \sqrt{9} = 3 \\
+                        \sigma_2 &= \|a_2\| = \sqrt{(-1)^2 + 2^2 + 2^2} = \sqrt{9} = 3 \\
+                        \sigma_3 &= \|a_3\| = \sqrt{2^2 + 2^2 + (-1)^2} = \sqrt{9} = 3
+                    \end{split}
+                \]
+
+                The singular value decomposition of $A$ is given by 
+                $A = \mathbf{U} \tilde{\mathbf{\Sigma}} \mathbf{V}^\top$, where
+                $\tilde{\mathbf{\Sigma}}$ is a diagonal matrix with the singular
+                values on the diagonal, and $\mathbf{U}$ and $\mathbf{V}$ are 
+                orthogonal matrices. The columns of $\mathbf{V}$ are the 
+                normalized eigenvectors of $A^\top A$. But, since $A^\top A$ is
+                a scalar multiple of the identity matrix, any vector in
+                $\mathbb{R}^3$ is an eigenvector, $A^\top A v_i = 9 v_i$. 
+                Therefore, the standard basis vectors can be used as the 
+                columns of $\mathbf{V}$:
+                \[
+                    \mathbf{V} = \begin{bmatrix}
+                        1 & 0 & 0 \\
+                        0 & 1 & 0 \\
+                        0 & 0 & 1
+                    \end{bmatrix}
+                \]
+
+                The matrix $\tilde{\mathbf{\Sigma}}$ is a diagonal matrix with the
+                singular values on the diagonal:
+                \[
+                    \tilde{\mathbf{\Sigma}} = \begin{bmatrix}
+                        3 & 0 & 0 \\
+                        0 & 3 & 0 \\
+                        0 & 0 & 3
+                    \end{bmatrix}
+                \]
+
+                The matrix $\mathbf{U}$ is obtained by normalizing the columns of $A$
+                since $u_i = \frac{Av_i}{\sqrt{\lambda_i}} = 
+                \frac{a_i}{\sqrt{\|a_i\|}}$:
+                \[
+                    \mathbf{U} = \begin{bmatrix}
+                        \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} \\
+                        -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} \\
+                        \frac{2}{3} & \frac{2}{3} & -\frac{1}{3}
+                    \end{bmatrix}
+                \]
+
+                Therefore, the singular value decomposition of $A$ is:
+                \[
+                    A = \begin{bmatrix}
+                        \frac{2}{3} & -\frac{1}{3} & \frac{2}{3} \\
+                        -\frac{1}{3} & \frac{2}{3} & \frac{2}{3} \\
+                        \frac{2}{3} & \frac{2}{3} & -\frac{1}{3}
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        3 & 0 & 0 \\
+                        0 & 3 & 0 \\
+                        0 & 0 & 3
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        1 & 0 & 0 \\
+                        0 & 1 & 0 \\
+                        0 & 0 & 1
+                    \end{bmatrix}^\top
+                \]
+
+            \item[ii)] The matrix $C$ is given by the product of two
+                matrices: 
+                \[
+                    C = \begin{bmatrix}
+                        0 & 0 & 1 \\
+                        0 & 2 & 0 \\
+                        3 & 0 & 0
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        2 & -1 & 2 \\
+                        -1 & 2 & 2 \\
+                        2 & 2 & -1
+                    \end{bmatrix}
+                    = \begin{bmatrix}
+                        2 & 2 & -1 \\
+                        -2 & 4 & 4 \\
+                        6 & -3 & 6
+                    \end{bmatrix}
+                \]
+
+                The matrix $C^\top C$ is then:
+                \[
+                    C^\top C = \begin{bmatrix}
+                        2 & -2 & 6 \\
+                        2 & 4 & -3 \\
+                        -1 & 4 & 6
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        2 & 2 & -1 \\
+                        -2 & 4 & 4 \\
+                        6 & -3 & 6
+                    \end{bmatrix}
+                    = \begin{bmatrix}
+                        44 & -22 & 26 \\
+                        -22 & 29 & -4 \\
+                        26 & -4 & 53
+                    \end{bmatrix}
+                \]
+
+                The eigenvalues of $C^\top C$ are found by solving the 
+                characteristic polynomial $\det(C^\top C - \lambda I) = 
+                0$. The eigenvalues are $\lambda_1 = 81$, 
+                $\lambda_2 = 36$, and $\lambda_3 = 9$. The singular values 
+                are the square roots of the eigenvalues:
+                \[
+                    \sigma_1 = \sqrt{81} = 9, \quad
+                    \sigma_2 = \sqrt{36} = 6, \quad
+                    \sigma_3 = \sqrt{9} = 3
+                \]
+
+                The matrix $\tilde{\mathbf{\Sigma}}$ is then:
+                \[
+                    \tilde{\mathbf{\Sigma}} = \begin{bmatrix}
+                        9 & 0 & 0 \\
+                        0 & 6 & 0 \\
+                        0 & 0 & 3
+                    \end{bmatrix}
+                \]
+
+                The columns of $\mathbf{V}$ are the normalized eigenvectors of 
+                $C^\top C$, and the columns of $\mathbf{U}$ are given by $u_i = 
+                \frac{Cv_i}{\sigma_i}$. The eigenvectors corresponding to 
+                $\lambda_1$, $\lambda_2$, and $\lambda_3$ are then the 
+                following respectively:
+                \[
+                    e_1 = \begin{bmatrix} 1 \\ -\frac{1}{2} \\ 1 \end{bmatrix}, \quad
+                    e_2 = \begin{bmatrix} -\frac{1}{2} \\ 1 \\ 1 \end{bmatrix}, \quad
+                    e_3 = \begin{bmatrix} -2 \\ -2 \\ 1 \end{bmatrix}
+                \]
+
+                The matrix $\mathbf{V}$ is then formed by normalizing these 
+                eigenvectors:
+                \[
+                    \mathbf{V} = \begin{bmatrix}
+                        \frac{2}{3} & -\frac{1}{3} & -\frac{2}{3} \\
+                        -\frac{1}{3} & \frac{2}{3} & -\frac{2}{3} \\
+                        \frac{2}{3} & \frac{2}{3} & \frac{1}{3}
+                    \end{bmatrix}
+                \]
+
+                The matrix $\mathbf{U}$ is then formed by computing $u_i = 
+                \frac{Cv_i}{\sigma_i}$ for each $i$:
+                \[
+                    \mathbf{U} = \begin{bmatrix}
+                        0 & 0 & -1 \\
+                        0 & 1 & 0 \\
+                        1 & 0 & 0
+                    \end{bmatrix}
+                \]
+
+                Therefore, the singular value decomposition of $C$ is:
+                \[
+                    C = \begin{bmatrix}
+                        0 & 0 & -1 \\
+                        0 & 1 & 0 \\
+                        1 & 0 & 0
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        9 & 0 & 0 \\
+                        0 & 6 & 0 \\
+                        0 & 0 & 3
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        \frac{2}{3} & -\frac{1}{3} & -\frac{2}{3} \\
+                        -\frac{1}{3} & \frac{2}{3} & -\frac{2}{3} \\
+                        \frac{2}{3} & \frac{2}{3} & \frac{1}{3}
+                    \end{bmatrix}^\top
+                \]
+
+                \item[iii)] The optimal solution $B^*$ to the optimization
+                    problem is given by the truncated singular value 
+                    decomposition of $C$, keeping only the top two singular 
+                    values and the first two columns of $\mathbf{U}$ and 
+                    $\mathbf{V}$:
+                    \[
+                        B^* = \mathbf{U_2} \mathbf{\tilde{\Sigma}_2} \mathbf{V_2}^\top
+                    \]
+                    where $\mathbf{U_2}$, $\mathbf{\tilde{\Sigma}_2}$, and 
+                    $\mathbf{V_2}$ are the matrices formed by taking the first 
+                    2 columns of $\mathbf{U}$, the first 2 singular values in
+                    $\mathbf{\tilde{\Sigma}}$, and the first 2 columns of 
+                    $\mathbf{V}$, respectively.
+                    \[
+                        \mathbf{U_2} = \begin{bmatrix}
+                            0 & 0 \\
+                            0 & 1 \\
+                            1 & 0
+                        \end{bmatrix}, \quad
+                        \mathbf{\tilde{\Sigma}_2} = \begin{bmatrix}
+                            9 & 0 \\
+                            0 & 6
+                        \end{bmatrix}, \quad
+                        \mathbf{V_2} = \begin{bmatrix}
+                            \frac{2}{3} & -\frac{1}{3} \\
+                            -\frac{1}{3} & \frac{2}{3} \\
+                            \frac{2}{3} & \frac{2}{3}
+                        \end{bmatrix}
+                    \]
+
+                    The optimal solution $B^*$ is then:
+                    \[
+                        B^* = \begin{bmatrix}
+                            0 & 0 \\
+                            0 & 1 \\
+                            1 & 0
+                        \end{bmatrix}
+                        \begin{bmatrix}
+                            9 & 0 \\
+                            0 & 6
+                        \end{bmatrix}
+                        \begin{bmatrix}
+                            \frac{2}{3} & -\frac{1}{3} \\
+                            -\frac{1}{3} & \frac{2}{3} \\
+                            \frac{2}{3} & \frac{2}{3}
+                        \end{bmatrix}^\top
+                    \]
+                    \[
+                        = \begin{bmatrix}
+                            0 & 0 & 0 \\
+                            -2 & 4 & 4 \\
+                            6 & -3 & 6
+                        \end{bmatrix}
+                    \]
+
+                    The squared Frobenius norm of the difference $C - B^*$ is
+                    the sum of remaining squared singular value $3^2 = 9$. The 
+                    squared Frobenius norm of $C$ is the sum of squared
+                    singular values:
+                    \[
+                        \|C\|_F^2 = \sigma_1^2 + \sigma_2^2 + \sigma_3^2
+                            = 9^2 + 6^2 + 3^2 = 81 + 36 + 9 = 126
+                    \]
+                    Therefore, the error is:
+                    \[
+                        \frac{\|C - B^*\|_F^2}{\|C\|_F^2} = \frac{9}{126} = \frac{1}{14}
+                    \]
+            \end{itemize}
     \end{solution}
 
 \end{homeworkProblem}
