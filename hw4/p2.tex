@@ -49,7 +49,77 @@
     \end{itemize}
 
     \begin{solution}
-        % Solution content will go here
+        \begin{itemize}
+            \item[i)] The optimal solution $B^* = xy^\top$ is attained for $x =
+                \sqrt{\sigma_1} u_1$ and $y = \sqrt{\sigma_1} v_1$, where 
+                $\sigma_1$ is the largest singular value of $G$, and $u_1$ and 
+                $v_1$ are the corresponding left and right singular vectors, 
+                respectively. Since the error is small, each predicted grade 
+                for student $i$ on question $j$ is given by $B^*_{ij} = 
+                x_i y_j$. Since $x \in \mathbb{R}^n$, each entry $x_i$ can be 
+                interpreted as a measure of the ability of student $i$, for a
+                constant $y_j$. Similarly, since $y \in \mathbb{R}^m$, each
+                entry $y_j$ can be interpreted as a measure of the difficulty
+                of question $j$, for a constant $x_i$. Therefore, a difficulty
+                score for each question could be of the form $z_j = 1/y_j$,
+                where a higher value of $z_j$ indicates a more difficult
+                question.
+
+            \item[ii)] The compact, rank-1 singular value decomposition of $G$
+                is given by
+                \[
+                    G \approx B^* = \sigma_1 u_1 v_1^\top = 280.216
+                    \begin{bmatrix}
+                        -0.704 \\ -0.575 \\ -0.416
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        -0.505 & -0.444 & -0.434 & -0.419 & -0.429
+                    \end{bmatrix}
+                \]
+
+                where $G^\top G$ is given by
+                \[
+                    G^\top G = \begin{bmatrix}
+                        20000 & 17600 & 17200 & 16600 & 17000 \\
+                        17600 & 15500 & 15200 & 14600 & 14900 \\
+                        17200 & 15000 & 15200 & 14200 & 14200 \\
+                        16600 & 14200 & 14200 & 13800 & 14200 \\
+                        17000 & 14900 & 14200 & 14200 & 14900
+                    \end{bmatrix}
+                \]
+
+                and has an eigenvalue of $\lambda_1 = 78521.051$ with 
+                corresponding normalized eigenvector
+                \[
+                    v_1 = \begin{bmatrix}
+                        -0.505 \\ -0.444 \\ -0.434 \\ -0.419 \\ -0.429
+                    \end{bmatrix}
+                \]
+
+                The largest singular value of $G$ is given by $\sigma_1 =
+                \sqrt{\lambda_1} = 280.216$. The corresponding left singular
+                vector is given by $u_1 = \frac{1}{\sigma_1} G v_1 \approx
+                \begin{bmatrix} -0.420 \\ -0.336 \\ -0.252 \end{bmatrix}$
+
+                Therefore, the difficulty score for each question is given by
+                \[
+                    z = \begin{bmatrix}
+                        1/(\sqrt{\sigma_1} v_1)_1 \\
+                        1/(\sqrt{\sigma_1} v_1)_2 \\
+                        1/(\sqrt{\sigma_1} v_1)_3 \\
+                        1/(\sqrt{\sigma_1} v_1)_4 \\
+                        1/(\sqrt{\sigma_1} v_1)_5
+                    \end{bmatrix} =
+                    \begin{bmatrix}
+                        1/(-4.749) \\ 1/(-4.176) \\ 1/(-4.084) \\ 1/(-3.942) \\ 1/(-4.037)
+                    \end{bmatrix} \approx
+                    \begin{bmatrix}
+                        -0.210 \\ -0.240 \\ -0.245 \\ -0.254 \\ -0.248
+                    \end{bmatrix}
+                \]
+                The questions ranked from hardest to easiest are 1, 2, 5, 3, 4.
+        \end{itemize}
+
     \end{solution}
 
 \end{homeworkProblem}
