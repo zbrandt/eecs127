@@ -1,24 +1,77 @@
 \begin{homeworkProblem}
-  Consider the optimization problem: 
-  \begin{subequations}
-    \begin{align}
-      &\min_{x\in\mathbb R^3}\  \
-      \quad e^{-x_1-x_2-x_3}+(x_1+2x_2+3x_3)^4 \\
-      &\text{ s.t.}\qquad x_1-x_2-x_3=1 \\
-      &\qquad\quad \ \  x_1^2+x_2^2+x_3^2+x_1x_2+x_2x_3+x_1x_3\leq 2\\
-      &\qquad\quad \ \  0\leq  x_1\leq 1 \\
-      &\qquad\quad \ \   0\leq  x_2\leq 1  \\
-      &\qquad\quad \ \   0\leq  x_3\leq 1  
-    \end{align}
-  \end{subequations}
-  \begin{itemize}
-    \item [i)] Prove that $x=[1 \  \ 0 \  \ 0]^T$ is a feasible
-    point.
+    Consider the optimization problem: 
+    \begin{subequations}
+        \begin{align}
+            &\min_{x\in\mathbb R^3}\  \
+            \quad e^{-x_1-x_2-x_3}+(x_1+2x_2+3x_3)^4 \\
+            &\text{ s.t.}\qquad x_1-x_2-x_3=1 \\
+            &\qquad\quad \ \  x_1^2+x_2^2+x_3^2+x_1x_2+x_2x_3+x_1x_3\leq 2\\
+            &\qquad\quad \ \  0\leq  x_1\leq 1 \\
+            &\qquad\quad \ \   0\leq  x_2\leq 1  \\
+            &\qquad\quad \ \   0\leq  x_3\leq 1  
+        \end{align}
+    \end{subequations}
+    \begin{itemize}
+        \item [i)] Prove that $x=[1 \  \ 0 \  \ 0]^T$ is a feasible
+        point.
 
-    \item [ii)] Using the Weierstrass theorem, prove that the above
-    optimization problem has a solution.
+        \item [ii)] Using the Weierstrass theorem, prove that the above
+        optimization problem has a solution.
 
-    \item [iii)] Prove that every local minimum of the above
-    optimization problem is a global minimum.
-  \end{itemize}
+        \item [iii)] Prove that every local minimum of the above
+        optimization problem is a global minimum.
+    \end{itemize}
+
+    \begin{solution}
+        \begin{itemize}
+            \item [i)] For the point $x=[1 \  \ 0 \  \ 0]^T$ is a feasible 
+                point, it needs to satisfy all the constraints of the 
+                optimization problem. For the equality constraint:
+                \[
+                    \begin{split}
+                        x_1 - x_2 - x_3 - 1 = 0 \\
+                        1 - 0 - 0 - 1 = 0
+                    \end{split}
+                \]
+                This holds true. For the inequality constraint:
+                \[
+                    \begin{split}
+                        x_1^2 + x_2^2 + x_3^2 + x_1x_2 + x_2x_3 + x_1x_3 - 2 \leq 0 \\
+                        1^2 + 0^2 + 0^2 + 0 + 0 + 0 - 2 = -1 \leq 0
+                    \end{split}
+                \]
+                This also holds true. Finally, for the bound constraints:
+                \[
+                    \begin{split}
+                        0 \leq x_1 \leq 1 \quad \Rightarrow \quad 0 \leq 1 \leq 1 \\
+                        0 \leq x_2 \leq 1 \quad \Rightarrow \quad 0 \leq 0 \leq 1 \\
+                        0 \leq x_3 \leq 1 \quad \Rightarrow \quad 0 \leq 0 \leq 1
+                    \end{split}
+                \]
+                All bound constraints hold true as well. Therefore, the point
+                $x=[1 \  \ 0 \  \ 0]^T$ is a feasible point.
+
+            \item [ii)] The Weierstrass theorem states that a continuous
+                function defined on a compact set attains its minimum and
+                maximum values. In this optimization problem, the objective
+                function is continuous, as it is composed of exponential and
+                polynomial functions, which are both continuous. The feasible
+                set defined by the constraints is closed and bounded, making it
+                compact. Therefore, by the Weierstrass theorem, the optimization
+                problem has a solution.
+
+            \item [iii)] If the optimization problem is convex, then every
+                local minimum is a global minimum. The objective function must
+                be convex, the functions defining the inequality constraints
+                must be convex, and the functions defining the equality 
+                contraints must be affine. The objective function is the sum of
+                the exponential function $e^{-x_1-x_2-x_3}$, which is convex, 
+                and the polynomial function $(x_1+2x_2+3x_3)^4$, which is also 
+                convex. The function defining the inequality constraint is
+                $x_1^2+x_2^2+x_3^2+x_1x_2+x_2x_3+x_1x_3$, which is 
+                convex. The function defining the equality constraint is
+                $x_1-x_2-x_3-1$, which is affine. Therefore, the optimization
+                problem is convex, and every local minimum is a global minimum.
+        \end{itemize}
+    \end{solution}
 \end{homeworkProblem}
