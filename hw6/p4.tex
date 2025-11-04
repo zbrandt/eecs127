@@ -1,15 +1,69 @@
 \begin{homeworkProblem}
-  Answer the following questions about coercive functions:
-  \begin{itemize}
-    \item [i)] Find all coefficients $\alpha_1,...,\alpha_n$ and
-    $\beta_1,...,\beta_n$ for which the function 
-    \begin{equation}
-      \alpha_1x_1^2+\cdots+\alpha_nx_n^2
-      +\cos\left(\beta_1x_1^3+\cdots+\beta_nx_n^3\right)
-    \end{equation}
-    is coercive.
-    \item [ii)] Given a constant $a$, prove that the function
-    $x_1^2+x_2^2+ax_1x_2$ is coercive if $|a|<2$ and is not coercive
-    if $|a|\geq 2$. 
-  \end{itemize}
+    Answer the following questions about coercive functions:
+    \begin{itemize}
+        \item [i)] Find all coefficients $\alpha_1,...,\alpha_n$ and
+            $\beta_1,...,\beta_n$ for which the function 
+            \begin{equation}
+                \alpha_1x_1^2+\cdots+\alpha_nx_n^2
+                +\cos\left(\beta_1x_1^3+\cdots+\beta_nx_n^3\right)
+            \end{equation}
+            is coercive.
+        \item [ii)] Given a constant $a$, prove that the function
+            $x_1^2+x_2^2+ax_1x_2$ is coercive if $|a|<2$ and is not coercive
+            if $|a|\geq 2$. 
+    \end{itemize}
+
+    \begin{solution}
+        \begin{itemize}
+            \item [i)] For the function to be coercive, $\lim_{\|x\|\to\infty} 
+                f(x) = \infty$ must hold. The cosine term is bounded between -1 
+                and 1, so as $\|x\| \to \infty$, so the coefficients $\beta_i$ 
+                can take on any value. All coefficients $\alpha_i$ must be 
+                positive for the quadratic term to grow without bound as 
+                $\|x\| \to \infty$ for any $x$. This is because if any 
+                $\alpha_i$ is negative, then along the axis corresponding to 
+                that variable, that is, when all other variables are zero, the 
+                function will tend to $-\infty$ as that variable tends to 
+                $\infty$. Therefore, the function is coercive if and only if 
+                $\alpha_i > 0$ for all $i = 1, \ldots, n$.
+
+            \item[ii)] The function $x_1^2 + x_2^2 + ax_1x_2$ can be rewritten
+                in the form $x^\top A x$ as 
+                \[
+                    \begin{bmatrix} x_1 & x_2 \end{bmatrix}
+                    \begin{bmatrix}
+                        1 & \frac{a}{2} \\
+                        \frac{a}{2} & 1
+                    \end{bmatrix}
+                    \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}.
+                \]
+
+                If $A$ is positive definite, then $x^\top A x > 0$ for all $x 
+                \neq 0$, and the eigenvalues of $A$ are positive. The minimum
+                solution to the problem 
+                \[
+                    \begin{split}
+                        &\min_{x\in\mathbb R^2}\ x^\top A x \\
+                        &\text{ s.t.}\quad \|x\|_2 = 1
+                    \end{split}
+                \]
+                is $\lambda_{\min} \| x \|_2^2$ where $\lambda_{\min}$ is the
+                smallest eigenvalue of $A$. Therefore, $x_1^2 + x_2^2 + ax_1x_2
+                \geq \lambda_{\min} \| x \|_2^2$, which gives coercivity when
+                $A$ is positive definite. The eigenvalues of $A$ are given by
+                the characteristic polynomial
+                \[
+                    \det(A - \lambda I) = (1 - \lambda)^2 - \left(\frac{a}{2}\right)^2 = 0
+                \]
+                which has solutions $\lambda = 1 \pm \frac{a}{2}$. When $A$ is 
+                positive definite, both eigenvalues are strictly positive,
+                which is the case when $|a| < 2$. In this case, the function 
+                $x_1^2 + x_2^2 + ax_1x_2$ is greater than or equal to 
+                $(1 - \frac{a}{2}) \| x \|_2^2$, which tends to infinity as
+                $\| x \|_2$ tends to infinity, since $(1 - \frac{a}{2}) > 0$, 
+                so the function is coercive.
+
+        \end{itemize}
+    \end{solution}
+
 \end{homeworkProblem}
