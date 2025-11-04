@@ -24,53 +24,57 @@
 
     \begin{solution}
         \begin{itemize}
-            \item [i)] For the point $x=[1 \  \ 0 \  \ 0]^T$ is a feasible 
-                point, it needs to satisfy all the constraints of the 
-                optimization problem. For the equality constraint:
+            \item [i)] The point $x=[1 \  \ 0 \  \ 0]^\top$ is feasible if 
+                each constraint is satisfied at it. The equality constraint is
+                satisfied since
                 \[
-                    \begin{split}
-                        x_1 - x_2 - x_3 - 1 = 0 \\
-                        1 - 0 - 0 - 1 = 0
-                    \end{split}
+                    x_1 - x_2 - x_3 = 1 - 0 - 0 = 1.
                 \]
-                This holds true. For the inequality constraint:
+                The inequality constraint is satisfied since
                 \[
-                    \begin{split}
-                        x_1^2 + x_2^2 + x_3^2 + x_1x_2 + x_2x_3 + x_1x_3 - 2 \leq 0 \\
-                        1^2 + 0^2 + 0^2 + 0 + 0 + 0 - 2 = -1 \leq 0
-                    \end{split}
+                    x_1^2 + x_2^2 + x_3^2 + x_1x_2 + x_2x_3 + x_1x_3
+                    = 1^2 + 0^2 + 0^2 + 1\cdot 0 + 0\cdot 0 + 1\cdot 0
+                    = 1 \leq 2.
                 \]
-                This also holds true. Finally, for the bound constraints:
+                The remaining constraints are satisfied since
                 \[
-                    \begin{split}
-                        0 \leq x_1 \leq 1 \quad \Rightarrow \quad 0 \leq 1 \leq 1 \\
-                        0 \leq x_2 \leq 1 \quad \Rightarrow \quad 0 \leq 0 \leq 1 \\
-                        0 \leq x_3 \leq 1 \quad \Rightarrow \quad 0 \leq 0 \leq 1
-                    \end{split}
+                    0 \leq x_1 = 1 \leq 1, \quad
+                    0 \leq x_2 = 0 \leq 1, \quad
+                    0 \leq x_3 = 0 \leq 1.
                 \]
-                All bound constraints hold true as well. Therefore, the point
-                $x=[1 \  \ 0 \  \ 0]^T$ is a feasible point.
+                Therefore, the point $x=[1 \  \ 0 \  \ 0]^\top$ is feasible.
 
-            \item [ii)] The Weierstrass theorem states that a continuous
-                function defined on a compact set attains its minimum and
-                maximum values. In this optimization problem, the objective
-                function is continuous, as it is composed of exponential and
-                polynomial functions, which are both continuous. The feasible
-                set defined by the constraints is closed and bounded, making it
-                compact. Therefore, by the Weierstrass theorem, the optimization
-                problem has a solution.
+            \item [ii)] The Weierstrass theorem states that an optimization
+                problem with a continuous objective function has a finite 
+                solution if the feasible set is closed and bounded. In 
+                terms of this optimization problem, if the functions 
+                defining the inequality and equality constraints are 
+                continuous, then the feasible set is closed. The 
+                functions
+                \[
+                    x_1 - x_2 - x_3 - 1, \quad
+                    x_1^2 + x_2^2 + x_3^2 + x_1x_2 + x_2x_3 + x_1x_3, \quad
+                    -x_1, \quad x_1 - 1, \quad
+                    -x_2, \quad x_2 - 1, \quad
+                    -x_3, \quad x_3 - 1
+                \]
+                are all continuous. Therefore, the feasible set is closed. 
+                The feasible set is a subset of the box defined by the
+                constraints $0 \leq x_i \leq 1$ for $i=1,2,3$, which is
+                bounded. Therefore, the feasible set is also bounded. Since
+                the objective function
+                \[
+                    e^{-x_1-x_2-x_3} + (x_1 + 2x_2 + 3x_3)^4
+                \]
+                is continuous, the optimization problem has a finite solution.
 
-            \item [iii)] If the optimization problem is convex, then every
-                local minimum is a global minimum. The objective function must
-                be convex, the functions defining the inequality constraints
-                must be convex, and the functions defining the equality 
-                contraints must be affine. The objective function is the sum of
-                the exponential function $e^{-x_1-x_2-x_3}$, which is convex, 
-                and the polynomial function $(x_1+2x_2+3x_3)^4$, which is also 
-                convex. The function defining the inequality constraint is
-                $x_1^2+x_2^2+x_3^2+x_1x_2+x_2x_3+x_1x_3$, which is 
-                convex. The function defining the equality constraint is
-                $x_1-x_2-x_3-1$, which is affine. Therefore, the optimization
+            \item [iii)] For a convex optimization problem, any local minimum
+                is also a global minimum. Since the objective function is
+                the sum of an exponential function and a polynomial function,
+                both of which are convex, the objective function is convex.
+                Since the functions defining the inequality constraints are 
+                convex and the functions defining the equality constraints are
+                affine, the feasible set is convex. Therefore, the optimization
                 problem is convex, and every local minimum is a global minimum.
         \end{itemize}
     \end{solution}
