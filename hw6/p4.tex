@@ -28,40 +28,46 @@
                 $\alpha_i > 0$ for all $i = 1, \ldots, n$.
 
             \item[ii)] The function $x_1^2 + x_2^2 + ax_1x_2$ can be rewritten
-                in the form $x^\top A x$ as 
+                as 
                 \[
+                    x_1^2 + x_2^2 + ax_1x_2 = x^\top A x = 
                     \begin{bmatrix} x_1 & x_2 \end{bmatrix}
-                    \begin{bmatrix}
-                        1 & \frac{a}{2} \\
-                        \frac{a}{2} & 1
-                    \end{bmatrix}
-                    \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}.
+                    \begin{bmatrix} 1 & \frac{a}{2} \\ \frac{a}{2} & 1 \end{bmatrix}
+                    \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
                 \]
-
-                If $A$ is positive definite, then $x^\top A x > 0$ for all $x 
-                \neq 0$, and the eigenvalues of $A$ are positive. The minimum
-                solution to the problem 
+                
+                The eigenvalues of symmetric matrix $A$ are given by the 
+                characteristic polynomial $\det(A - \lambda I) = 0$, which 
+                gives eigenvalues $\lambda = 1 \pm \frac{a}{2}$, with minimum 
+                eigenvalue of $\lambda_min = 1 - \frac{|a|}{2}$. When $|a| < 
+                2$, the eigenvalues are strictly positive, and $A$ is positive 
+                definite. The function is then lower bounded by $\lambda_{\min}
+                \|x\|^2_2$ since
                 \[
                     \begin{split}
-                        &\min_{x\in\mathbb R^2}\ x^\top A x \\
-                        &\text{ s.t.}\quad \|x\|_2 = 1
+                        x^\top A x &= x^\top V \Lambda V^\top x \\
+                        &= y^\top \Lambda y \\
+                        &= \sum_{i=1}^n \lambda_i y_i^2 \\
+                        &\geq \lambda_{\min} \sum_{i=1}^n y_i^2 \\
+                        &= \lambda_{\min} \|y\|^2_2 \\
+                        &= \lambda_{\min} \|x\|^2_2
                     \end{split}
                 \]
-                is $\lambda_{\min} \| x \|_2^2$ where $\lambda_{\min}$ is the
-                smallest eigenvalue of $A$. Therefore, $x_1^2 + x_2^2 + ax_1x_2
-                \geq \lambda_{\min} \| x \|_2^2$, which gives coercivity when
-                $A$ is positive definite. The eigenvalues of $A$ are given by
-                the characteristic polynomial
-                \[
-                    \det(A - \lambda I) = (1 - \lambda)^2 - \left(\frac{a}{2}\right)^2 = 0
-                \]
-                which has solutions $\lambda = 1 \pm \frac{a}{2}$. When $A$ is 
-                positive definite, both eigenvalues are strictly positive,
-                which is the case when $|a| < 2$. In this case, the function 
-                $x_1^2 + x_2^2 + ax_1x_2$ is greater than or equal to 
-                $(1 - \frac{a}{2}) \| x \|_2^2$, which tends to infinity as
-                $\| x \|_2$ tends to infinity, since $(1 - \frac{a}{2}) > 0$, 
-                so the function is coercive.
+
+                where $V$ is the orthogonal matrix of eigenvectors and
+                $\Lambda$ is the diagonal matrix of eigenvalues. Since $V$ is 
+                orthogonal, $\|y\|_2 = \|x\|_2$. Therefore, as $\|x\|_2$ goes 
+                to $\infty$, $f(x)$ tends to $\infty$, and the function is 
+                coercive. When $|a| = 2$, $A$ is linearly dependent and the 
+                null space consists of more than just the zero vector. 
+                Therefore, there exist non-zero vectors $x$ such that $Ax = 0$, 
+                and along those directions the function equals 0 and does not 
+                tend to $\infty$ as $\|x\| \to \infty$, and is not coercive. 
+                When $|a| > 2$, the minimum eigenvalue is negative, and there 
+                exists a direction along its eigenvector for which the function 
+                tends to $-\infty$ as $\|x\| \to \infty$, and the function is 
+                not coercive. Therefore, the function is coercive if $|a| < 2$ 
+                and is not coercive if $|a| \geq 2$.
 
         \end{itemize}
     \end{solution}
