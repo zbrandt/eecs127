@@ -70,12 +70,40 @@
 
             \item [iii)] For a convex optimization problem, any local minimum
                 is also a global minimum. Since the objective function is
-                the sum of an exponential function and a polynomial function,
-                both of which are convex, the objective function is convex.
-                Since the functions defining the inequality constraints are 
-                convex and the functions defining the equality constraints are
-                affine, the feasible set is convex. Therefore, the optimization
-                problem is convex, and every local minimum is a global minimum.
+                the sum of a composition of an exponential function with an
+                affine transformation ($a^\top x$ with $a = (-1, -1, -1)$) 
+                and a composition of a convex polynomial function ($ 
+                f''(u) = 12u^2$) with an affine transformation ($b^\top x$ with 
+                $b = (1, 2, 3)$), both of which are convex, so the objective 
+                function is convex. The inequality constraint can be rewritten 
+                as
+                \[
+                    \begin{bmatrix} x_1 & x_2 & x_3 \end{bmatrix}
+                    \begin{bmatrix}
+                    1 & \frac{1}{2} & \frac{1}{2} \\
+                    \frac{1}{2} & 1 & \frac{1}{2} \\
+                    \frac{1}{2} & \frac{1}{2} & 1
+                    \end{bmatrix}
+                    \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+                    \leq 2
+                \]
+                The matrix in the quadratic form is positive semidefinite since
+                its eigenvalues are $\lambda_1 = 2$, $\lambda_2 = 
+                \frac{1}{2}$, and $\lambda_3 = \frac{1}{2}$, which are all non-negative.
+                Therefore, the function defining the inequality constraint is 
+                convex. The equality constraint is affine since it can be 
+                written as
+                \[
+                    \begin{bmatrix} 1 & -1 & -1 \end{bmatrix}
+                    \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} - 1 = 0.
+                \]
+
+                The functions defining the last inequality constraints are
+                also convex since their Hessians are zero matrices. Since the 
+                functions defining the inequality constraints are convex and 
+                the function defining the equality constraint is affine, the 
+                feasible set is convex. Therefore, the optimization problem is 
+                convex, and every local minimum is a global minimum.
         \end{itemize}
     \end{solution}
 \end{homeworkProblem}
