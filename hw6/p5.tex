@@ -1,0 +1,48 @@
+\begin{homeworkProblem}
+    Consider the optimization problem 
+    \begin{equation}
+        \begin{aligned}
+            &\min_{x\in\mathbb R^2} \quad \alpha x_1+\beta x_2\\
+            &\ \ \text{s.t.} \quad  x_1\geq 0\\
+            &\hspace{0.95cm} x_2\geq 0\\
+            &\hspace{0.95cm} x_1+4x_2\leq 4\\
+            &\hspace{0.95cm} 4x_1+x_2\leq 4
+        \end{aligned}
+    \end{equation}
+
+    where $\alpha$ and $\beta$ are two constants. Run the following experiment 
+    200 times:
+    
+    \begin{itemize}
+        \item Generate a random  pair $(\alpha,\beta)$ where $\alpha$ and 
+            $\beta$ are chosen uniformly from the interval $[-1,1]$.
+        \item Solve the resulting LP in CVX and record the obtained optimal 
+            solution $x^*$.
+    \end{itemize}
+    
+    By checking how many different solutions you have obtained in these 200 
+    experiments and how many times each solution has appeared, empirically 
+    find the vertices of the feasible set and for each obtained vertex 
+    calculate the probability that the vertex is a solution when 
+    $(\alpha,\beta)$ is random. \\
+    
+    \begin{solution}
+
+        The vertices of the feasible set are 
+        \[
+            (0,0), \quad (0,1), \quad (1,0), \quad \left(\frac{4}{5},
+            \frac{4}{5}\right)
+        \]
+        After one instance of running the experiment 200 times, the 
+        following probabilities were observed for each vertex being 
+        the optimal solution:
+        \begin{itemize}
+            \item $(0,0)$: 0.310
+            \item $(0,1)$: 0.235
+            \item $(1,0)$: 0.185
+            \item $\left(\frac{4}{5},\frac{4}{5}\right)$: 0.270
+        \end{itemize}
+    
+    \end{solution}
+
+\end{homeworkProblem}
