@@ -39,8 +39,8 @@
                 The eigenvalues of symmetric matrix $A$ are given by the 
                 characteristic polynomial $\det(A - \lambda I) = 0$, which 
                 gives eigenvalues $\lambda = 1 \pm \frac{a}{2}$, with minimum 
-                eigenvalue of $\lambda_min = 1 - \frac{|a|}{2}$. When $|a| < 
-                2$, the eigenvalues are strictly positive, and $A$ is positive 
+                eigenvalue of $\lambda_min = 1 - \frac{|a|}{2}$. If $|a| < 
+                2$, all eigenvalues are strictly positive, and $A$ is positive 
                 definite. The function is then lower bounded by $\lambda_{\min}
                 \|x\|^2_2$ since
                 \[
@@ -56,18 +56,18 @@
 
                 where $V$ is the orthogonal matrix of eigenvectors and
                 $\Lambda$ is the diagonal matrix of eigenvalues. Since $V$ is 
-                orthogonal, $\|y\|_2 = \|x\|_2$. Therefore, as $\|x\|_2$ goes 
-                to $\infty$, $f(x)$ tends to $\infty$, and the function is 
-                coercive. When $|a| = 2$, $A$ is linearly dependent and the 
-                null space consists of more than just the zero vector. 
-                Therefore, there exist non-zero vectors $x$ such that $Ax = 0$, 
-                and along those directions the function equals 0 and does not 
-                tend to $\infty$ as $\|x\| \to \infty$, and is not coercive. 
-                When $|a| > 2$, the minimum eigenvalue is negative, and there 
-                exists a direction along its eigenvector for which the function 
-                tends to $-\infty$ as $\|x\| \to \infty$, and the function is 
-                not coercive. Therefore, the function is coercive if $|a| < 2$ 
-                and is not coercive if $|a| \geq 2$.
+                orthogonal, $\|y\|_2 = \|x\|_2$. Therefore, $x^\top A x \geq 
+                \lambda_{\min} \|x\|^2_2 \to \infty$ as $\|x\| \to \infty$ and 
+                the function is coercive. If $|a| = 2$, $A$ is linearly 
+                dependent and the null space consists of more than just the 
+                zero vector. Therefore, there exist non-zero vectors $x$ such 
+                that $Ax = 0$, and along those directions the function equals 0 
+                and does not tend to $\infty$ as $\|x\| \to \infty$, and is not
+                coercive. When $|a| > 2$, the minimum eigenvalue is negative, 
+                and there exists a direction along its eigenvector for which the 
+                function tends to $-\infty$ as $\|x\| \to \infty$, and the 
+                function is not coercive. Therefore, the function is coercive 
+                if $|a| < 2$ and is not coercive if $|a| \geq 2$.
 
         \end{itemize}
     \end{solution}
