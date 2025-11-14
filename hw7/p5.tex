@@ -1,0 +1,52 @@
+\begin{homeworkProblem}
+	\textbf{(Coding)} Consider a vector $x^*\in\mathbb R^{1000}$ with entries
+	defined by
+	\begin{equation}
+	x^*_i = \begin{cases}
+		5 & \text{if } i=10 \\
+		-2 & \text{if } i=20 \\
+		7 & \text{if } i=95 \\
+		15 & \text{if } i=750 \\
+		-10 & \text{if } i=920 \\
+		0 & \text{if } i\in\{1,\ldots,1000\}\setminus\{10,20,95,750,920\}
+	\end{cases}
+	\end{equation}
+	This vector has only 5 nonzero entries. Assume $x^*$ is unknown and we aim
+	to find $x^*$ from $m$ linear measurements $y_1,\ldots,y_m$ of the form
+	\begin{equation}
+	y_i = a_i^\top x^*,\quad i=1,\ldots,m
+	\end{equation}
+	where $a_i\in\mathbb R^{1000}$ has entries drawn i.i.d. from a normal
+	distribution. If $m\ge 1000$, we can solve a linear system to find $x^*$.
+	The goal is to find the smallest $m$ for which we can still learn $x^*$
+	from the measurements. Based on compressed sensing, consider the convex
+	optimization problem
+	\begin{equation}
+	\label{opt_4}
+	\begin{aligned}
+		&\min_{x\in\mathbb R^{1000}}\quad \|x\|_1 \\
+		&\quad\text{s.t.}\quad y_i = a_i^\top x,\quad i=1,\ldots,m
+	\end{aligned}
+	\end{equation}
+
+	Let $\hat x$ denote an optimal solution of~\eqref{opt_4}. If the error
+	$\|x^* - \hat x\|_1 < 0.01$, we declare that~\eqref{opt_4} has been
+	successful in finding $x^*$ (up to a small precision error); otherwise, it
+	has failed. Write code in CVX to run the following experiment 10 times for
+	every $m\in\{5,6,\ldots,98,99,100\}$:
+
+	\begin{itemize}
+		\item Generate random vectors $a_1,\ldots,a_m$, and compute the
+			measurements $y_1,\ldots,y_m$.
+		\item Solve the optimization problem~\eqref{opt_4} and check whether it
+			has been successful in finding $x^*$.
+	\end{itemize}
+
+	Define the empirical success probability $p(m)$ as the number of successes
+	divided by 10.
+	\begin{itemize}
+		\item[i)] Draw the function $p(m)$ for $m=5,\ldots,100$.
+		\item[ii)] What observation(s) can you make from the function $p(m)$?
+	\end{itemize}
+\end{homeworkProblem}
+

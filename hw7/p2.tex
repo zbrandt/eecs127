@@ -1,0 +1,26 @@
+\begin{homeworkProblem}
+	\textbf{(Coding)} Consider the optimization problem
+	\begin{equation}
+	\label{opt_2}
+	\begin{aligned}
+		& \min_{x\in\mathbb R^{40}}\quad a^\top x \\
+		&\quad\text{s.t.}\quad Ax = b \\
+		&\hspace{1.0em}\quad x \ge 0
+	\end{aligned}
+	\end{equation}
+	where $a\in\mathbb R^{40}$, $A\in\mathbb R^{5\times 40}$, and
+	$b\in\mathbb R^{5}$. Write code to run the following experiment
+	10 times:
+
+	\begin{itemize}
+		\item Generate a random pair $(A,b)$ where each element of $A$ and $b$
+			is chosen uniformly from the interval $[-1,1]$.
+		\item Find all vertices of the LP~\eqref{opt_2} and report the number 
+            of vertices (note: you do not need to report the values of the 
+            vertices).
+	\end{itemize}
+
+	By averaging over the 10 experiments, calculate the expected number of
+	vertices for the feasible set of the LP~\eqref{opt_2}.
+\end{homeworkProblem}
+

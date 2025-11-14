@@ -1,0 +1,22 @@
+\begin{homeworkProblem}
+	Consider the IP
+	\begin{equation}
+	\label{opt_3}
+	\begin{aligned}
+		& \max_{x\in\mathbb R^{5}}\quad 5x_1 - 7x_2 + 10x_3 + 3x_4 - x_5 \\
+		&\quad\text{s.t.}\quad -x_1 - 3x_2 + 3x_3 - x_4 - 2x_5 \le 0 \\
+		&\qquad\quad\hspace{1.0em} 2x_1 - 5x_2 + 3x_3 - 2x_4 - 2x_5 \le 3 \\
+		&\qquad\quad\hspace{1.0em} -x_2 + x_3 + x_4 - x_5 \ge 2 \\
+		&\qquad\quad\hspace{1.0em} x_1, x_2, x_3, x_4, x_5 \in \{0,1,2,3\}
+	\end{aligned}
+	\end{equation}
+
+	\begin{itemize}
+		\item[i)] Formulate the LP relaxation of the problem~\eqref{opt_3}.
+		\item[ii)] \textbf{(Coding)} Solve the obtained LP in CVX and report its
+			optimal solution.
+		\item[iii)] Calculate the difference between the optimal objective values
+			of the IP~\eqref{opt_3} and its LP relaxation.
+	\end{itemize}
+\end{homeworkProblem}
+
