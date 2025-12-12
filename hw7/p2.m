@@ -1,29 +1,37 @@
 experiments = 10;
-num_vertices = zeros(experiments,1);
+vertices = zeros(experiments, 1);
 
 for i = 1:experiments
-    
-    # Generate a random pair
-    A = 2*rand(5,40) - 1;
-    b = 2*rand(5,1) - 1;
-
-    combos = nchoosek(1:40,5);
+    % Generate random A and b with elements in [-1, 1]
+    A = 2*rand(5, 40) - 1;
+    b = 2*rand(5, 1) - 1;
+   
     count = 0;
-
-    for j = 1:size(combos,1)
-        idx = combos(j,:);
-        M = [A(:,idx) eye(5)];
-        rhs = b;
-
-        sol = M\rhs;
-        xB = sol(1:5);
-        if all(xB >= 0)
-            count = count + 1;
+    
+    % Get combinations for all possible indices
+    combinations = nchoosek(1:40, 5);
+    
+    for j = 1:size(combinations, 1);
+        % Select arbitrary indices and get columns
+        indices = combinations(j, :);
+        A_basis = A(:, indices);
+        
+        % Check if columns are linearly independent
+        if rank(A_basis) == 5
+            % Find unique vector y
+            y = A_basis \ b;
+            
+            % Check if y >= 0
+            if all(y >= 0)  
+                count = count + 1;
+            end
         end
     end
-
-    num_vertices(i) = count;
+    
+    disp(count)
+    vertices(i) = count;
 end
 
-expected_vertices = mean(vertex_counts);
+% Calculate expected number of vertices
+expected_vertices = mean(vertices);
 disp(expected_vertices)

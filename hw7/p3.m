@@ -13,4 +13,4 @@ cvx_begin
 cvx_end
 
 fprintf('Optimal x = [%g %g %g %g %g]\n', x);
-fprintf('Optimal objective = %g\n', c' * x);
+fprintf('Optimal objective value= %g\n', c' * x);

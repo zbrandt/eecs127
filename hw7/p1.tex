@@ -14,5 +14,52 @@
 		\item[i)] Convert the optimization problem~\eqref{opt_1} to an LP.
 		\item[ii)] Put the obtained LP into the LP standard form.
 	\end{itemize}
+
+	\begin{solution}
+	
+		\begin{itemize}
+			\item[i)]To convert the optimization problem~\eqref{opt_1} to an LP, we
+			note that the objective function $e^{\left(\sum_{i=1}^n \alpha_i x_i\right)}$ is
+			monotonically increasing with respect to $\sum_{i=1}^n \alpha_i x_i$. Therefore, we can minimize $\sum_{i=1}^n \alpha_i x_i$ instead. The constraint can be rewritten as:
+			\[\|x\|_{\infty} + 10\times\|x\|_1 \le \sqrt{5}\]
+			Let $t = \|x\|_{\infty}$ and $s = \|x\|_1$. Then we have:
+			\begin{equation}
+			\begin{aligned}
+				& t + 10s \le \sqrt{5} \\
+				& -t \le x_i \le t, \quad i=1,\ldots,n \\
+				& s = \sum_{i=1}^n |x_i|
+			\end{aligned}
+			\end{equation}
+			To handle the absolute values in $s$, we introduce auxiliary variables $u_i \ge 0$ such that $u_i \ge x_i$ and $u_i \ge -x_i$. Thus, we can rewrite $s$ as:
+			\[s = \mathbf{1}^T u\]
+			where $\mathbf{1}$ is the vector of all ones and $u = [u_1, \ldots, u_n]^T$. The LP formulation becomes:
+			\begin{equation}
+			\begin{aligned}
+				& \min_{x,t,s,u} \quad \sum_{i=1}^n \alpha_i x_i \\
+				&\quad\text{s.t.}\quad t + 10s \le \sqrt{5} \\
+				& -t \le x_i \le t, \quad i=1,\ldots,n \\
+				& u_i \ge x_i, \quad i=1,\ldots,n \\
+				& u_i \ge -x_i, \quad i=1,\ldots,n \\
+				& s = \mathbf{1}^T u
+			\end{aligned}
+			\end{equation}
+
+			\item[ii)]To put the obtained LP into the LP standard form, we need to express all inequalities as equalities and ensure all variables are non-negative. We can introduce slack variables for the inequalities:
+			\begin{equation}
+			\begin{aligned}
+				& \min_{x,t,s,u, \text{slack}} \quad \sum_{i=1}^n \alpha_i x_i \\
+				&\quad\text{s.t.}\quad t + 10s + \text{slack}_1 = \sqrt{5} \\
+				& -t + \text{slack}_{2,i} = x_i, \quad i=1,\ldots,n \\
+				& t + \text{slack}_{3,i} = x_i, \quad i=1,\ldots,n \\
+				& u_i - x_i + \text{slack}_{4,i} = 0, \quad i=1,\ldots,n \\
+				& u_i + x_i + \text{slack}_{5,i} = 0, \quad i=1,\ldots,n \\
+				& s - \mathbf{1}^T u + \text{slack}_6 = 0 \\
+				& x_i, t, s, u_i, \text{slack} \ge 0, \quad i=1,\ldots,n
+			\end{aligned}
+			\end{equation}
+		\end{itemize}
+
+	\end{solution}
+
 \end{homeworkProblem}
 
