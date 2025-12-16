@@ -29,7 +29,9 @@ called the \textbf{duality gap}.
 Since $d(\lambda,\mu)$ is a point-wise minimum of affine
 functions, it is concave no matter whether the primal
 problem is convex or not, and therefore the dual problem is
-always a convex optimization problem.
+always a convex optimization problem. Note: for convex
+optimizations, the Lagrangian $L(x,\lambda,\mu)$ is always
+convex in $x$.
 
 Hence, leveraging weak duality, we can use convex
 optimization to obtain a lower bound to a hard, potentially
@@ -40,14 +42,10 @@ If it holds that $p^* = d^*$, i.e., duality gap is zero,
 then \textit{strong duality} holds.
 
 If the primal problem is convex and Slater's condition
-holds, then
-
-Strong duality holds.
-
-The KKT conditions of the primal problem simultaneously
-solve the primal problem and the dual problem. I.e., $x^*$
-solves the primal problem and $(\lambda^*, \mu^*)$ solves
-the dual problem.
+holds, then: 1) strong duality holds, 2) the KKT conditions of 
+the primal problem simultaneously solve the primal problem and 
+the dual problem. I.e., $x^*$ solves the primal problem and 
+$(\lambda^*, \mu^*)$ solves the dual problem.
 
 If $x^*$ is an arbitrary optimal solution to the primal
 problem and $(\lambda^*, \mu^*)$ is an arbitrary optimal

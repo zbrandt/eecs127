@@ -76,7 +76,10 @@ case, $x^* = A^\dagger y$ is the unique LS solution.
 \subsection{Ridge Regression}
 An $\ell_2$-regularized LS problem:
 $\min_{x \in \R^n} \|Ax - y\|_2^2 + \alpha \|x\|_2^2$ where
-$\alpha$ is a non-negative scalar.
+$\alpha$ is a non-negative scalar. Expanding:
+$\min_x x^\top A^\top A x - 2y^\top A x + y^\top y +
+\alpha x^\top x = \min_x x^\top(A^\top A + \alpha I_n)x -
+2y^\top A x + y^\top y$.
 
 The matrix $A^\top A + \alpha I_n$ is invertible, and the
 unique solution to the ridge regression problem is
@@ -137,7 +140,8 @@ $\frac{\|\Delta x\|_2}{\|x\|_2} \leq \|A\|_2 \|A^{-1}\|_2
 \frac{\|\Delta y\|_2}{\|y\|_2}$.
 
 Define \textbf{condition number}
-$\kappa(A) = \|A\|_2 \|A^{-1}\|_2$.
+$\kappa(A) = \|A\|_2 \|A^{-1}\|_2 = \frac{\sigma_1}{\sigma_n}$
+(ratio of largest to smallest singular value).
 
 \textbf{Theorem}: the relative change in $x$ with regard to
 a relative change in $y$, when solving $y = Ax$ for $A$

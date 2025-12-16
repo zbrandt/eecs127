@@ -52,15 +52,16 @@ $n \times n$ PSD matrices: $\mathbb{S}^n_+$.
 Alternative PSD definition: $A \in \mathbb{S}^n$ is PSD if
 $x^\top Ax \geq 0$ for all $x \in \R^n$.
 
-Note: showing all elements non-negative does NOT prove PSD.
+Showing all elements non-negative does NOT prove PSD.
 
 $A \in \mathbb{S}^n$ is \textbf{positive definite (PD)}
 (denoted $A \succ 0$) if all eigenvalues strictly positive.
 Set of $n \times n$ PD matrices: $\mathbb{S}^n_{++}$.
 Alternative: $x^\top Ax > 0$ for all $x \neq 0$.
 
-Check PD easily: all leading principal minors strictly
-positive.
+All leading principal minors strictly positive $\rightarrow$ PD.
+\textbf{Leading principal minors}: determinants of top-left
+$k \times k$ submatrices for $k=1,\ldots,n$.
 
 $A$ is \textbf{negative semidefinite (NSD)} if
 $\lambda_1(A),\ldots,\lambda_n(A) \leq 0$ or $x^\top Ax \leq 0$
@@ -147,8 +148,9 @@ in general.
 \textbf{Finding SVD}: The non-zero singular values of $A$
 are the square root of the non-zero eigenvalues of
 $AA^\top$ or $A^\top A$. Columns of $U$ (left singular
-vectors) are eigenvectors of $AA^\top$. Columns of $V$
-(right singular vectors) are eigenvectors of $A^\top A$.
+vectors) are normalized eigenvectors of $AA^\top$. Columns
+of $V$ (right singular vectors) are normalized eigenvectors
+of $A^\top A$.
 
 If $\alpha A$, where $\alpha$ is non-negative scalar, is an
 orthogonal matrix, then one possible SVD for $A$ is
@@ -187,3 +189,6 @@ $\|A\|_2 = \sigma_1(A) = \sqrt{\lambda_{\max}(A^\top A)}$,
 where $\sigma_1(A)$ is largest singular value of $A$ and
 $\lambda_{\max}(A^\top A)$ is largest eigenvalue of
 $A^\top A$.
+
+\textbf{Nuclear norm}: $\|A\|_* = \sum_{i=1}^r \sigma_i(A)$
+(sum of all singular values).

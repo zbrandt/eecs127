@@ -40,6 +40,8 @@ tend to $+\infty$ along all directions when
 $\|x\| \to \infty$ to be coercive. Conversely, to prove not
 coercive, just need to find one direction along which $f(x)$
 does not go to $+\infty$ when $\|x\| \to \infty$.
+\textbf{Example}: $f(x) = \frac{1}{2}x^\top A x + b^\top x + c$
+is coercive iff $A \succ 0$ (PD).
 
 \textbf{Theorem (unconstrained)}: Consider
 $f: \R^n \to \R$ with domain $\R^n$ (either convex or
@@ -92,12 +94,13 @@ $x \in \dom f$, then $f$ is strictly convex. Reverse may not
 hold (e.g., $f(x) = x^4$). Geometric: graph must be
 ``bowl-shaped'' everywhere.
 
-\textbf{Example convex functions}: $f(x) = e^{ax}$,
-$f(x) = x^a$ where $a \geq 1$ or $a \leq 0$ on $\R_{++}$,
-$f(x) = -\log(x)$ on $\R_{++}$, any $\ell_p$ form function
-$f(x) = \|x\|_p$, quadratic functions
-$f(x) = x^\top P x + q^\top x + r$ where $P$ is symmetric
-and $P \succeq 0$. If $P \succ 0$, $f$ is strictly convex.
+\textbf{Example convex functions}: $f(x) = e^{ax}$ for
+$a \neq 0$, $f(x) = x^a$ where $a \geq 1$ or $a \leq 0$ on
+$\R_{++}$, $f(x) = -\log(x)$ on $\R_{++}$, any $\ell_p$ norm
+$f(x) = \|x\|_p$, quadratic $f(x) = x^\top P x + q^\top x + r$
+where $P$ is symmetric and $P \succeq 0$ (strictly convex if
+$P \succ 0$). Commonly used: max function $\max\{x_1,\ldots,x_n\}$,
+log-sum-exp $\log(\sum_{i=1}^n e^{x_i})$.
 
 A function $f$ is called \textbf{concave} if $-f$ is convex.
 
