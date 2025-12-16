@@ -1,0 +1,190 @@
+\section{Linear Systems, LS, \& Regression}
+
+\subsection{Solving Linear Systems}
+Consider solving a system of linear equations $Ax = y$.
+
+$Ax = y$ has a unique solution if and only if
+$y \in \mathcal{R}(A)$ and $\N(A) = \{0\}$.
+
+If $A$'s nullspace satisfies $\N(A) \neq \{0\}$, any
+solution $x^*$ produces a space of solutions
+$x^* + z$ where $z \in \N(A)$.
+
+\textbf{Tall matrix}: if $A \in \R^{m \times n}$, where
+$m > n$, then we have an overdetermined case, and there is
+likely no solution unless we are lucky and $y \in \R(A)$.
+
+\textbf{Fat matrix}: now assume $m > n$, and our rows are
+linearly independent. Now we have an underdetermined case,
+and the solution space is $\bar{x} + \N(A)$ where $\bar{x}$
+is an arbitrary solution. For many applications, the
+``best'' solution is the one with minimum norm:
+$\min_{x \in \R^n} \|x\|$ subject to $Ax = y$.
+
+The minimum-norm solution can be derived as
+$x^* = A^\top (AA^\top)^{-1} y = A^\dagger y$.
+
+If $A$ is square and full-rank (invertible), we can solve
+directly $x = A^{-1} y$.
+
+\subsection{Least Squares (LS)}
+What if we are in the overdetermined case and $y$ is not in
+the range of $A$? We need to minimize how much we violate
+the equation $Ax = y$, instead of solving it exactly.
+
+Given a matrix $A \in \R^{m \times n}$ and a vector
+$y \in \R^m$, we aim to solve the problem
+$\min_{x \in \R^n} \|Ax - y\|_2$.
+
+Denote the optimal solution as $x^*$. Note that $x^*$ also
+solves $\min_{x \in \R^n} \|Ax - y\|_2^2$.
+
+The set of solutions for the LS problem is
+$\mathcal{S} := \{x^* \mid A^\top Ax^* = A^\top y\}$. Proof:
+optimality conditions.
+
+It holds that $\mathcal{S} = A^\dagger y + \N(A)$, where
+$A^\dagger$ is the pseudo-inverse of $A$ as defined above.
+
+\subsection{LS \& Projection}
+Geometrically, the LS problem finds the projection of $y$
+onto $\mathcal{R}(A)$, the range of $A$.
+
+The projection result
+$y^* = Ax^* = \Pi_{\mathcal{R}(A)} y$ exists and is unique.
+
+\textbf{Theorem on projection}: $y = y^* \perp \mathcal{R}(A)$.
+I.e., $(y - y^*, v) = 0$ for all $v \in \mathcal{R}(A)$.
+
+We can find $y^*$ by solving for the vector that
+simultaneously satisfies $y^* \in \mathcal{R}(A)$ and
+$y - y^* \perp \mathcal{R}(A)$.
+
+\subsection{Minimum-Norm LS Solution}
+To find the minimum-norm solution, solve
+$\min_{x \in \R^n} \|x\|_2$. I.e.,
+$\min_{x \in \R^n} \|x\|_2$ subject to
+$A^\top Ax = A^\top y$.
+
+The minimum-norm LS solution is unique and equal to
+$A^\dagger y = (A^\top A)^{-1} A^\top y$.
+
+If $A$ has full column rank, i.e., $m \geq n = \Rank(A)$,
+then $A^\top A$ is invertible and $\N(A) = \{0\}$. In this
+case, $x^* = A^\dagger y$ is the unique LS solution.
+
+\subsection{Ridge Regression}
+An $\ell_2$-regularized LS problem:
+$\min_{x \in \R^n} \|Ax - y\|_2^2 + \alpha \|x\|_2^2$ where
+$\alpha$ is a non-negative scalar.
+
+The matrix $A^\top A + \alpha I_n$ is invertible, and the
+unique solution to the ridge regression problem is
+$x^* = (A^\top A + \alpha I_n)^{-1} A^\top y$.
+
+\subsection{Sparsity \& LASSO Regression}
+$x \in \R^n$ is called \textbf{sparse} if many of its
+entries are zero. Otherwise it is called dense.
+
+The number of non-zero entries of $x$ is called its
+\textit{cardinality}, denoted as $\|x\|_0$. When all entries
+of $x$ are within $[-1,1]$, it holds that
+$\|x\|_1 \leq \|x\|_0$.
+
+LASSO is an $\ell_1$-regularized LS problem that promotes
+solution sparsity: $\min_{x \in \R^n} \|Ax - y\|_2^2 +
+\alpha \|x\|_1$, where $\alpha$ is a non-negative scalar.
+
+LASSO's objective function is not always differentiable.
+However, it can be reformulated as a QP via the epigraph
+method:
+$\min_{x \in \R^n, t \in \R^n} x^\top P_0 x + q_0^\top x +
+r_0 + \alpha \sum_{i=1}^n t_i$ subject to
+$-t_i \leq x_i \leq t_i$ for $i = 1,\ldots,n$,
+
+where $P_0 \in \mathbb{S}^n_+$, $q_0 \in \R^n$, and
+$r_0 \in \R$ are expressions of $A$ and $y$.
+
+$x^*$ is a solution to LASSO if and only if
+$2P_0 x^* + q_0 + \lambda^* = 0$, where each entry of
+$\lambda^*$ satisfies: $\lambda_i^* = \alpha$ if
+$x_i^* > 0$, $\lambda_i^* = -\alpha$ if $x_i^* < 0$, and
+$\lambda_i^* \in [-\alpha,\alpha]$ if $x_i^* = 0$.
+Furthermore, it holds that $|x_i^*| = t_i^*$ for all $i$.
+
+\subsection{Sensitivity Analysis -- Linear Systems}
+Consider system of linear equations with
+$A \in \R^{n \times n}$ invertible and $y \in \R^n$ given;
+we want to find $x: Ax = y$.
+
+Due to invertibility solution is given by $A^{-1} y$.
+
+What if $y$ changes to $y + \Delta y$ due to measurement
+noise?
+
+Consider solution change to $x + \Delta x$:
+$A(x + \Delta x) = y + \Delta y$ and $Ax = y \implies
+\Delta x = A^{-1} \Delta y$.
+
+Lemma: for matrix $B$ and vector $y$:
+$\|By\|_2 \leq \|B\|_2 \|y\|_2$.
+
+So we have $\|\Delta x\|_2 \leq \|A^{-1}\|_2 \|\Delta y\|_2$
+and $\|y\|_2 \leq \|A\|_2 \|x\|_2$.
+
+Combining these two yields that
+$\frac{\|\Delta x\|_2}{\|x\|_2} \leq \|A\|_2 \|A^{-1}\|_2
+\frac{\|\Delta y\|_2}{\|y\|_2}$.
+
+Define \textbf{condition number}
+$\kappa(A) = \|A\|_2 \|A^{-1}\|_2$.
+
+\textbf{Theorem}: the relative change in $x$ with regard to
+a relative change in $y$, when solving $y = Ax$ for $A$
+invertible, is given by
+$\frac{\|\Delta x\|_2}{\|x\|_2} \leq \kappa(A)
+\frac{\|\Delta y\|_2}{\|y\|_2}$.
+
+Recall that $\|A\|_2 = \sigma_1$ is the largest singular
+value and $\|A^{-1}\|_2 = \frac{1}{\sigma_n}$ is the largest
+singular value of $A^{-1}$.
+
+If $\kappa(A)$ is close to 1, then $A$ is called well
+conditioned; if $\kappa(A)$ is large, then $A$ is ill
+conditioned.
+
+Similar bound if we perturb $A$ to $A + \Delta A$:
+$\frac{\|\Delta x\|_2}{\|x\|_2} \leq \kappa(A)
+\frac{\|\Delta A\|_2}{\|A\|_2}$.
+
+\subsection{Sensitivity Analysis -- LS}
+Let's consider least-square problem
+$\min_x \|Ax - y\|_2$, where $y$ is a measurement vector
+with noise.
+
+How does perturbing $y$ to $y + \Delta y$ affect solutions?
+
+Recall we can define an ellipse in two equivalent forms:
+$E = \{x \in \R^n \mid x = By, \|y\|_2 \leq 1\}$;
+$E = \{x \in \R^n \mid x^\top P^{-1} x \leq 1\}$ where
+$P = BB^\top$ is PSD.
+
+Let $v^1,\ldots,v^n$ be eigenvectors of $P$ with associated
+eigenvalues $\lambda_1,\ldots,\lambda_n$. The the ellipse
+has semi-axes is the directions $v^1,\ldots,v^n$ with
+lengths $\sqrt{\lambda_1},\ldots,\sqrt{\lambda_n}$.
+
+Recall that $x^* = A^\dagger y$ solves least squares;
+consider $x^* + \Delta x = A^\dagger(y + \Delta y)$.
+
+\textbf{Theorem}: for an uncertainty ball on the measurement
+$\|\Delta y\| \leq 1$, we get an ellipsoidal uncertainty set
+on the solution changes:
+$E = \{\Delta x \in \R^n \mid \Delta x = A^\dagger \Delta y,
+\|\Delta y\| \leq 1\}$.
+
+$E$ is an ellipse with semi-axes $v^1,\ldots,v^n$ and
+lengths $\frac{1}{\sigma_1}, \ldots, \frac{1}{\sigma_n},
+0,\ldots,0$ from the SVD $A = U \Sigma V^\top$ (this is
+because $A = U \Sigma V^\top \implies
+A^\dagger = V \Sigma^\dagger U^\top$).

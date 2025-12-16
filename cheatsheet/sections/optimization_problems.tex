@@ -1,0 +1,251 @@
+\section{Optimization Problems}
+
+\subsection{Standard Form \& Solution Types}
+\textbf{Standard form}: $\min_x f_0(x)$ subject to
+$f_i(x) \leq 0$ for $i=1,\ldots,m$.
+
+Equality constraints can be converted to inequality:
+$h(x) = 0 \Longleftrightarrow h(x) \leq 0$ and
+$-h(x) \leq 0$.
+
+Point $y \in \R^n$ is \textbf{feasible} if $f_i(y) \leq 0$
+for all $i \in 1,\ldots,m$. \textbf{Feasible set}
+$\mathcal{X} = \{x \in \R^n \mid f_i(x) \leq 0, \forall
+i \in 1,\ldots,m\}$.
+
+Point $x^* \in \R^n$ is \textbf{global minimum} if
+$f_0(x^*) \leq f_0(x)$ for all $x \in \mathcal{X}$.
+
+If some $x$ is the optimal solution to $\min_x f(x)$, then
+$x$ is also optimal for $\max_x -f(x)$ and
+$\min_x \alpha f(x)$ where $\alpha > 0$.
+
+\textbf{Solution types}: \textit{Infeasible}: no input
+satisfies all constraints (e.g., $x > 1$ and $x < 0$).
+\textit{Unbounded}: optimal objective value is $-\infty$
+(e.g., minimize $x$ without constraints).
+\textit{Unattainable}: no finite solution (e.g., minimize
+$\frac{1}{x}$ subject to $x > 0$). \textit{Tractable}:
+algorithm to solve efficiently (polynomial time).
+
+For minimization: optimal objective is $+\infty$ if
+infeasible, $-\infty$ if unbounded from below, and finite
+otherwise ($x^*$ may or may not be attainable). Max problems
+see opposite.
+
+\subsection{Coercive Functions \& Finite Solutions}
+A function $f: \R^n \to \R$ is \textbf{coercive} if
+$\lim_{\|x\| \to \infty} f(x) = \infty$. Note: $f(x)$ must
+tend to $+\infty$ along all directions when
+$\|x\| \to \infty$ to be coercive. Conversely, to prove not
+coercive, just need to find one direction along which $f(x)$
+does not go to $+\infty$ when $\|x\| \to \infty$.
+
+\textbf{Theorem (unconstrained)}: Consider
+$f: \R^n \to \R$ with domain $\R^n$ (either convex or
+non-convex). Then if $f$ is continuous and coercive,
+$\min f(x)$ has a finite solution.
+
+\textbf{Theorem (constrained)}: (1) Consider
+$\min f(x)$ subject to $x \in \mathcal{S}$. Suppose that
+$f$ (convex or non-convex but with domain $\R^n$) is
+coercive and continuous. If $\mathcal{S}$ (convex or
+non-convex) is closed, the optimization problem has a finite
+solution. (2) Consider $\min f_0(x)$ subject to
+$f_i(x) \leq 0$ for $i=1,\ldots,m$ and $h_j(x) = 0$ for
+$j=1,\ldots,k$, where $f_0, f_i$'s, and $h_j$'s are
+arbitrary but continuous with domain $\R^n$. Then if $f_0$
+is coercive, the optimization has a finite solution.
+
+\textbf{Weierstrass theorem}: consider $\min f(x)$ s.t.
+$x \in \mathcal{S}$, where $f: \R^n \to \R$ is continuous.
+If $\mathcal{S}$ is compact, then the optimization has a
+finite solution. So for optimization of form $\min f_0(x)$
+s.t. $f_i(x) \leq 0$, as long as $f_0$ is continuous and the
+feasible set is bounded, we have a finite solution.
+
+\subsection{Convex Functions}
+A function $f: \R^n \to \R$ is \textbf{convex} if and only
+if its domain is a convex set and
+$f(\alpha x + (1-\alpha)y) \leq \alpha f(x) + (1-\alpha)f(y)$
+for all $x,y \in \dom f$ and $\alpha \in [0,1]$.
+This is the \textbf{zeroth-order condition} for convexity.
+
+Geometric intuition: the graph of the function must
+entirely lie below the line segment that connects two
+arbitrary points on the graph. Replacing $\leq$ with $<$
+gives \textbf{strict convexity}.
+
+Thus, the set $\{x: f(x) \leq 0\}$ is a convex set if $f$ is
+a convex function.
+
+\textbf{First-order convexity condition}:
+$f(y) + \nabla f(y)^\top (x-y) \leq f(x)$ for all
+$x,y \in \dom f$ (replace $\leq$ with $<$ for strict
+convexity). Geometric: graph must entirely lie above the
+tangent line at arbitrary point on graph.
+
+\textbf{Second-order convexity condition}:
+$f$ is convex if and only if $\nabla^2 f(x) \succeq 0$ for
+all $x \in \dom f$. If $\nabla^2 f(x) \succ 0$ for all
+$x \in \dom f$, then $f$ is strictly convex. Reverse may not
+hold (e.g., $f(x) = x^4$). Geometric: graph must be
+``bowl-shaped'' everywhere.
+
+\textbf{Example convex functions}: $f(x) = e^{ax}$,
+$f(x) = x^a$ where $a \geq 1$ or $a \leq 0$ on $\R_{++}$,
+$f(x) = -\log(x)$ on $\R_{++}$, any $\ell_p$ form function
+$f(x) = \|x\|_p$, quadratic functions
+$f(x) = x^\top P x + q^\top x + r$ where $P$ is symmetric
+and $P \succeq 0$. If $P \succ 0$, $f$ is strictly convex.
+
+A function $f$ is called \textbf{concave} if $-f$ is convex.
+
+Affine functions are simultaneously convex and concave.
+
+Convexity does not imply continuity. Example: consider an
+end point $\bar{x}$ of $\dom f$. $f$ can still be convex if
+it ``jumps up'' at $\bar{x}$. Discontinuity should happen
+only on the boundaries.
+
+\textbf{Operations producing convex functions}: (1)
+Point-wise maximum of a set of convex functions is convex.
+Point-wise minimum of a set of concave functions is concave.
+(2) A summation of convex functions
+$f(x) := \sum_{i=1}^k \alpha_i f_i(x)$ for $\alpha_i \geq 0$
+is convex if $f_i$ is convex for all $i$. (3) If $f(x)$ is
+convex, then the affine transformation
+$g(x) = f(Ax+b)$ is also convex. (4) If $f(x)$ is convex
+and $g(x)$ is convex and non-decreasing, then the composite
+function $g \circ f(x)$ is convex. (5) Compositions of
+convex functions are not convex in general.
+
+\subsection{Convex Optimization Problems}
+Consider an optimization problem $\min_x f(x)$ subject to
+$x \in \mathcal{X}$. This problem is \textbf{convex} when
+$f$ is a convex function and $\mathcal{X}$ is a convex set.
+
+Consider $\min_x f_0(x)$ subject to
+$g_i(x) \leq 0$ for all $i$ and $h_j(x) = 0$ for all $j$.
+This problem is convex when $f_0$ is a convex function,
+$g_i$ is a convex function for each $i$, $h_j$ is an affine
+function for each $j$.
+
+For a convex optimization problem: (1) All local solutions
+are global. (2) The feasible set is a convex set. (3) The
+set of all global minima is a convex set. (4) If the
+objective is strictly convex, then there is either no
+solution or a unique solution.
+
+\subsection{Linear Programming (LP)}
+An \textbf{LP} can be written as: $\min_x a_0^\top x$
+subject to $A x = b$ and $C x \leq d$.
+
+Rewritten in standard form: $\min_x a_0^\top x$ subject to
+$A x = b$ and $x \geq 0$.
+
+If an LP is reformulated from the form $A x = b$ and
+$C x \leq d$ into the standard form $A x = b$ and $x \geq 0$,
+$A$ and $b$ in the standard form can be different from those
+in the original problem. To convert an affine inequality
+constraint $C x \leq d$ into standard form, we can introduce
+a slack variable $s$ (same shape as $d$) and rewrite the
+constraint as $C x + s = d$ and $s \geq 0$. The constraint
+$x \geq 0$ must apply to all variables. If some variables
+are not constrained to be non-negative in the original
+problem (say $x_i$ is one of such variables), we can
+``split'' it into $x_{i+} \geq 0$ and $x_{i-} \geq 0$ and
+represent $x_i$ as $x_{i+} - x_{i-}$.
+
+\textbf{Algorithms to solve LPs}: \textit{Simplex}: start
+at an arbitrary vertex and repeatedly go to a neighbor
+vertex with lower objective value. \textit{Interior point}:
+start in the interior of polyhedron and move towards optimal
+solution (stays in the interior as opposed to moving on the
+boundary).
+
+\textbf{LP solutions at vertices}: For a convex set
+$\mathcal{S}$, a point $y \in \mathcal{S}$ is an
+\textbf{extreme point} if there do not exists points
+$u, v \in \mathcal{S}$ such that $y = \alpha u + (1-\alpha)v$
+for some $0 < \alpha < 1$. Extreme points of a polyhedron
+are called \textbf{vertices}.
+
+\textbf{Theorem}: assume LP has a solution. Then one of its
+feasible set vertices is a solution (could have other
+solutions as well).
+
+\textbf{Theorem}: if an LP's feasible set is bounded, then a
+solution exists.
+
+\textbf{Finding all vertices}: Consider a feasible set for
+$x$ defined by $Ax = b$ and $x \geq 0$, where
+$x \in \R^n$, $A \in \R^{m \times n}$, and
+$b \in \R^m$. Assume that $m \leq n$, i.e., $A$ is wide. An
+algorithm that finds all vertices of the feasible set is as
+follows. Find all possible combinations of $m$ columns of
+$A$ and denote the resulting square sub-matrices formed by
+these columns as $A_i^{\text{sub}} \in \R^{m \times m}$ for
+$i = 1,\ldots,\binom{n}{m}$, where $\binom{n}{m}$ denotes
+$n$-choose-$m$ and is equal to $\frac{n!}{m!(n-m)!}$. Then,
+the number of vertices is the number of $A_i^{\text{sub}}$
+matrices that satisfies: (1) $A_i^{\text{sub}}$ is
+invertible; (2) The solution $z^*$ to the linear system
+$A_i^{\text{sub}} z = b$ is feasible (i.e., non-negative).
+
+\textbf{Converting to LP via epigraph formulation}:
+Sometimes, can convert an optimization problem into an LP
+via an epigraph formulation. Start with general optimization
+problem where $\mathcal{S}$ is some feasible set:
+$\min_{x \in \R^n} f(x)$ subject to $x \in \mathcal{S}$.
+Reformulate using a slack variable $t$:
+$\min_{x \in \R^n, t \in \R} t$ subject to
+$x \in \mathcal{S}$, $f(x) \leq t$.
+
+For example, $\min_{x \in \R^n} \|x\|_\infty$ subject to
+$x \in \mathcal{S}$ can be converted to
+$\min_{x \in \R^n, t \in \R} t$ subject to
+$x \in \mathcal{S}$ and $\|x\|_\infty \leq t$, where
+$\|x\|_\infty \leq t \Longleftrightarrow |x_i| \leq t$ for
+all $i$.
+
+\subsection{Quadratic Programming (QP)}
+\textbf{QP} includes a quadratic term in the objective,
+where $P_0 \succeq 0$: $\min_x x^\top P_0 x + q_0^\top x +
+r_0$ subject to $Ax = b$ and $Cx \leq d$.
+
+\subsection{QCQP \& Convex Relaxations}
+\textbf{QCQP} can be written in the form of $\min_x
+x^\top P_0 x + q_0^\top x + r_0$ subject to $Ax = b$ and
+$x^\top P_j x + q_j^\top x + r_j \leq 0$ for
+$j = 1,\ldots,k$, where $P_j \succeq 0$ for $j = 0,\ldots,k$.
+
+Hierarchy: LP $\subseteq$ QP $\subseteq$ QCQP $\subseteq$
+convex optimization.
+
+\textbf{Convex relaxations}: Consider optimization problem
+with $f(x)$ convex but $\mathcal{S}$ non-convex: $\min_x
+f(x)$ subject to $x \in \mathcal{S}$. If we replace
+$\mathcal{S}$ with a convex $\hat{\mathcal{S}}$ such that
+$\mathcal{S} \subset \hat{\mathcal{S}}$, we get a
+\textit{convex relaxation}: $\min_x f(x)$ subject to
+$x \in \hat{\mathcal{S}}$. Let $x^*$ and $\hat{x}$ be global
+minima of the original and relaxed optimizations,
+respectively. Then $f(\hat{x}) \leq f(x^*)$. If
+$\hat{x} \in \mathcal{S}$, then $\hat{x}$ is a global min
+for original optimization problem.
+
+\subsection{Integer Programming (IP)}
+An \textbf{IP} is just an LP with a constraint that all
+elements of $x$ are integers: $\min_x a_0^\top x$ subject to
+$Ax = b$, $x \geq 0$, and $x_i$ are integers for
+$i = 1,\ldots,n$. IPs are non-convex!
+
+\textit{Can form a convex relaxation by dropping the integer
+constraint}. Let $P_1$ be the above IP, and let $P_2$ be the
+corresponding relaxed LP dropping the integer constraint.
+\textbf{Theorem}: if all vertices of the feasible set of
+$P_2$ are integral, then the convex relaxation is exact, and
+the optimal objectives of $P_1$ and $P_2$ are equal. This is
+the case for assignment / transport problems (see Lecture
+19)!

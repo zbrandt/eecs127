@@ -1,0 +1,67 @@
+\documentclass[8pt,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{bbm}
+
+\geometry{top=0.3in,left=0.3in,right=0.3in,bottom=0.3in}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\columnseprule}{0.2pt}
+
+% Compact lists
+\setlist{nosep,leftmargin=*,topsep=0pt,partopsep=0pt}
+
+% Compact sections
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {0.5ex}{0.3ex}{\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {0.3ex}{0.2ex}{\normalfont\normalsize\bfseries}}
+\makeatother
+
+% Custom commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathcal{N}}
+\DeclareMathOperator{\Rank}{Rank}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cls}{cls}
+% \DeclareMathOperator{\int}{int}
+\DeclareMathOperator{\Card}{Card}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\relint}{relint}
+
+\begin{document}
+\begin{multicols}{3}
+\small
+
+% Include section files
+\input{sections/linear_algebra_vectors.tex}
+
+\input{sections/linear_algebra_matrices.tex}
+
+\input{sections/set_theory.tex}
+
+\input{sections/optimization_problems.tex}
+
+\input{sections/optimality_conditions.tex}
+
+\input{sections/least_squares.tex}
+
+\input{sections/duality.tex}
+
+\input{sections/numerical_methods.tex}
+
+\end{multicols}
+\end{document}
+

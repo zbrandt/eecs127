@@ -1,0 +1,189 @@
+\section{Linear Algebra -- Matrices}
+
+\subsection{Range, Nullspace, Rank}
+For $A \in \R^{m \times n}$:
+
+\textbf{Range} (column space):
+$\mathcal{R}(A) = \{Ax \mid x \in \R^n\}$.
+
+$\mathcal{R}(A)$ is a subspace.
+$\Rank(A)$ = dimension of $\mathcal{R}(A)$ = \# linearly
+independent columns = \# linearly independent rows.
+
+\textbf{Nullspace}:
+$\N(A) = \{x \in \R^n \mid Ax = 0\}$.
+
+$\N(A)$ is a subspace. Key relationships:
+\begin{itemize}
+\item $\N(A) \perp \mathcal{R}(A^\top)$
+\item $\N(A) \oplus \mathcal{R}(A^\top) = \R^n$ (any
+  $v \in \R^n$ decomposes into sum from $\N(A)$ and
+  $\mathcal{R}(A^\top)$)
+\item $\dim(\N(A)) + \Rank(A) = n$
+\end{itemize}
+
+\subsection{Eigenvalues \& Eigenvectors}
+For square $A \in \R^{n \times n}$: $Av = \lambda v$ means
+$\lambda$ is \textbf{eigenvalue} and $v$ is
+\textbf{eigenvector}.
+
+Find eigenvalues: solve $\det(A - \lambda I) = 0$.
+Then solve $(A - \lambda I) v = 0$ for eigenvector $v$.
+
+If $A$ is rank-deficient, then $\det(A) = 0$ and at least
+one eigenvalue is 0.
+
+$AA^\top$ and $A^\top A$ share same non-zero eigenvalues.
+
+$\Tr(A)$ (sum of diagonal entries) = sum of eigenvalues.
+
+\subsection{Symmetric Matrices \& PSD/PD}
+$A \in \R^{n \times n}$ is \textbf{symmetric} if
+$A = A^\top$. Set of $n \times n$ symmetric matrices:
+$\mathbb{S}^n$.
+
+Symmetric matrices have all real eigenvalues.
+
+$A \in \mathbb{S}^n$ is \textbf{positive semidefinite (PSD)}
+(denoted $A \succeq 0$) if all eigenvalues are non-negative,
+i.e., $\lambda_1(A),\ldots,\lambda_n(A) \geq 0$. Set of
+$n \times n$ PSD matrices: $\mathbb{S}^n_+$.
+
+Alternative PSD definition: $A \in \mathbb{S}^n$ is PSD if
+$x^\top Ax \geq 0$ for all $x \in \R^n$.
+
+Note: showing all elements non-negative does NOT prove PSD.
+
+$A \in \mathbb{S}^n$ is \textbf{positive definite (PD)}
+(denoted $A \succ 0$) if all eigenvalues strictly positive.
+Set of $n \times n$ PD matrices: $\mathbb{S}^n_{++}$.
+Alternative: $x^\top Ax > 0$ for all $x \neq 0$.
+
+Check PD easily: all leading principal minors strictly
+positive.
+
+$A$ is \textbf{negative semidefinite (NSD)} if
+$\lambda_1(A),\ldots,\lambda_n(A) \leq 0$ or $x^\top Ax \leq 0$
+for all $x$.
+
+$A$ is \textbf{negative definite (ND)} if
+$\lambda_1(A),\ldots,\lambda_n(A) < 0$ or $x^\top Ax < 0$
+for all $x \neq 0$.
+
+All PD matrices are PSD. All ND matrices are NSD.
+
+\textbf{Sign indefinite}: has at least one positive and one
+negative eigenvalue.
+
+\subsection{Orthogonal Matrices}
+$U \in \R^{n \times n}$ with columns $u^{(1)},\ldots,u^{(n)}$
+is \textbf{orthogonal} if columns are orthonormal, i.e.,
+$\langle u^{(i)}, u^{(j)} \rangle$ is 1 if $i=j$ and 0 if
+$i \neq j$.
+
+Equivalently: $U^\top U = I_n$ (where $I_n$ is
+$n \times n$ identity matrix), i.e., $U^\top = U^{-1}$.
+
+Identity matrix is orthogonal. Also diagonal and full-rank.
+
+\subsection{Eigenvalue Decomposition}
+Consider $A \in \R^{n \times n}$ with eigenvalues
+$\lambda_1,\ldots,\lambda_n$ and eigenvectors
+$v^{(1)},\ldots,v^{(n)}$ (each associated with one
+eigenvalue).
+
+If $v^{(1)},\ldots,v^{(n)}$ are linearly independent, then
+$A = U \Lambda U^{-1}$, where
+$U = [v^{(1)} \cdots v^{(n)}]$ and
+$\Lambda = \diag(\lambda_1,\ldots,\lambda_n)$.
+$A$ is \textbf{diagonalizable}.
+
+If $\lambda_1,\ldots,\lambda_n$ are all distinct, $A$ is
+always diagonalizable.
+
+\textbf{Spectral theorem}: For symmetric
+$A \in \mathbb{S}^n$, select eigenvector $v^{(i)}$ with
+length 1 for each eigenvalue $\lambda_i$. Then
+$A = U \Lambda U^\top$, i.e., $U$ is orthogonal.
+
+Symmetric matrices are always diagonalizable.
+
+\subsection{Singular Value Decomposition (SVD)}
+For arbitrary $A \in \R^{m \times n}$, $\exists$ matrices
+$U \in \R^{m \times m}$, $V \in \R^{n \times n}$, and
+$\Sigma \in \R^{m \times n}$ such that:
+
+$A = U \Sigma V^\top$.
+
+$U$ and $V$ are orthogonal matrices.
+
+$\Sigma$ is rectangular diagonal matrix:
+if $n \geq m$,
+$\Sigma = \begin{bmatrix} \sigma_1 & 0 & \cdots & 0 & 0 &
+\cdots & 0 \\ 0 & \sigma_2 & \cdots & 0 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots
+\\ 0 & 0 & \cdots & \sigma_m & 0 & \cdots & 0 \end{bmatrix}$;
+
+if $n \leq m$,
+$\Sigma = \begin{bmatrix} \sigma_1 & 0 & \cdots & 0 \\ 0 &
+\sigma_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \sigma_n \\ 0 & 0 & \cdots & 0 \\ \vdots &
+\vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 0 \end{bmatrix}$,
+
+where $\sigma_1 \geq \sigma_2 \geq \cdots \geq 0$.
+
+$\sigma_1,\sigma_2,\ldots$ are \textbf{singular values} of $A$.
+
+Let $r$ = \# of non-zero singular values, i.e.,
+$\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r >
+\sigma_{r+1} = \sigma_{r+2} = \ldots = 0$.
+Then $r = \Rank(A)$.
+
+For symmetric PSD, eigenvalues and singular values are the
+same, and eigenvalue decomposition $A = U \Lambda U^\top$ is
+a valid SVD. However, eigenvalues and singular values differ
+in general.
+
+\textbf{Finding SVD}: The non-zero singular values of $A$
+are the square root of the non-zero eigenvalues of
+$AA^\top$ or $A^\top A$. Columns of $U$ (left singular
+vectors) are eigenvectors of $AA^\top$. Columns of $V$
+(right singular vectors) are eigenvectors of $A^\top A$.
+
+If $\alpha A$, where $\alpha$ is non-negative scalar, is an
+orthogonal matrix, then one possible SVD for $A$ is
+$A = I_n \frac{1}{\alpha} (\alpha A)$.
+
+\subsection{Matrix Pseudo-Inverse}
+\textbf{Pseudo-inverse} (Moore-Penrose inverse) of
+$A = U \Sigma V^\top$ is $A^\dagger = V \Sigma^\dagger U^\top$,
+where we take the inverse of positive singular values and
+fill rest with zero.
+
+If $A$ is invertible, then $A^\dagger = A^{-1}$ and
+$AA^\dagger = I_n$. However, $AA^\dagger$ does not produce
+$I_n$ in general.
+
+If $A \in \R^{m \times n}$ has linearly independent rows,
+i.e., $n \geq m = \Rank(A)$, then
+$A^\dagger = A^\top (AA^\top)^{-1}$.
+
+If $A \in \R^{m \times n}$ has linearly independent columns,
+i.e., $m \geq n = \Rank(A)$, then
+$A^\dagger = (A^\top A)^{-1} A^\top$.
+
+\subsection{Matrix Norms}
+\textbf{Frobenius norm}:
+$\|A\|_F = \|\text{vec}(A)\|_2$, where
+$\text{vec}(A) \in \R^{mn}$ concatenates all columns of $A$.
+Equivalently, $\|A\|_F^2 = \sum_{i=1}^r \sigma_i^2(A)$.
+
+\textbf{$\ell_p$-induced norm}:
+$\|A\|_p = \max_{z \in \R^n, z \neq 0} \frac{\|Az\|_p}
+{\|z\|_p} = \max_{\|x\|_p=1} \|Ax\|_p$.
+
+\textbf{Spectral norm} ($p=2$):
+$\|A\|_2 = \sigma_1(A) = \sqrt{\lambda_{\max}(A^\top A)}$,
+where $\sigma_1(A)$ is largest singular value of $A$ and
+$\lambda_{\max}(A^\top A)$ is largest eigenvalue of
+$A^\top A$.

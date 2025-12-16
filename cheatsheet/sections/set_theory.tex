@@ -1,0 +1,119 @@
+\section{Set Theory}
+
+\subsection{Basic Set Properties}
+A set $\mathcal{S} \subseteq \R^n$ is \textbf{open} if for
+every $x \in \mathcal{S}$, $\exists \epsilon > 0$ s.t.
+$B_\epsilon(x) \subset \mathcal{S}$, where
+$B_\epsilon(x)$ is a ball centered at $x$ with radius
+$\epsilon$.
+
+$\mathcal{S} \subseteq \R^n$ is \textbf{closed} if its
+complement $\R^n \setminus \mathcal{S}$ is open.
+
+$\mathcal{S} \subseteq \R^n$ is \textbf{bounded} if
+$\exists r > 0$ s.t. $\mathcal{S} \subseteq B_r(0)$.
+
+A set is \textbf{compact} if it is closed and bounded.
+
+\textbf{Interior} of $\mathcal{S}$: points
+$x \in \mathcal{S}$ s.t. we can draw a ball in $\R^n$
+centered at $x$ of non-zero radius that belongs to
+$\mathcal{S}$. Denoted as $\text{int}\,\mathcal{S}$.
+
+\textbf{Closure}: $\text{cls}(\mathcal{S}) = \{z \in \R^n
+\mid z = \lim_{k \to \infty} x^{(k)} \text{ where }
+x^{(k)} \in \mathcal{S}, \forall k\}$.
+
+\textbf{Boundary}:
+$\partial \mathcal{S} = \text{cls}(\mathcal{S}) \setminus
+\text{int}(\mathcal{S})$.
+
+\subsection{Affine \& Convex Sets}
+\textbf{Affine combination} of
+$x_1,\ldots,x_k \in \R^n$:
+$\{\sum_{i=1}^k \alpha_i x_i \mid \sum_{i=1}^k \alpha_i = 1\}$.
+
+\textbf{Convex combination}: $\{\sum_{i=1}^k \alpha_i x_i
+\mid \sum_{i=1}^k \alpha_i = 1, \alpha_i \geq 0, \forall i\}$.
+
+$\mathcal{S}$ is \textbf{affine} if for all
+$x,y \in \mathcal{S}$ and $t \in \R$, the affine
+combination $tx + (1-t)y$ is in $\mathcal{S}$ (affine sets
+are based on subspaces). A hyperplane is an affine set, but
+a half-space is not.
+
+$\mathcal{S}$ is \textbf{convex} if for all
+$x,y \in \mathcal{S}$ and $t \in [0,1]$, the convex
+combination $tx + (1-t)y$ is in $\mathcal{S}$.
+
+A polyhedron $\{x \mid a_i^\top x \leq b_i, c_j x = d,
+\forall i,j\}$ is convex. Norm balls and half-spaces are
+convex. The set of PD matrices is convex, and the set of
+PSD matrices is also convex.
+
+\textbf{Affine hull} of a set: smallest affine set
+containing the set. It is the set of affine combinations of
+any $k$ points in the set.
+
+\textbf{Convex hull} of a set: smallest convex set
+containing the set. It is the set of convex combinations of
+any $k$ points in the set.
+
+\textbf{Operations preserving convexity}: (1) Intersection
+of convex sets is convex (note union may not be convex). (2)
+Affine transformation: $\mathcal{S} = \{f(x): x \in
+\mathcal{S}\}$ is convex if $f: \R^n \to \R^m$ is affine
+and $\mathcal{S}$ is convex. (3) Projections of convex sets
+are convex.
+
+\subsection{Dimension \& Relative Interior}
+\textbf{Dimension} of a set $\mathcal{S} \subseteq \R^n$:
+If $\mathcal{S}$ is a subspace, dimension is minimum number
+of spanning vectors. If $\mathcal{S}$ is affine,
+$\mathcal{S} = x_0 + V$ where $V$ is a subspace, and the
+dimension is the dimension of $V$. If $\mathcal{S}$ is
+convex, dimension is defined as the dimension of the affine
+hull of $\mathcal{S}$.
+
+\textbf{Relative interior} of convex set
+$\mathcal{S} \subseteq \R^n$: a point
+$x \in \mathcal{S}$ is in the relative interior if we can
+draw a ball in the affine hull of $\mathcal{S}$ centered at
+$x$ of non-zero radius that belongs to $\mathcal{S}$.
+Denoted as $\relint \mathcal{S}$.
+
+\subsection{Separating Hyperplane}
+\textbf{Hyperplane}: $(n-1)$ dimensional affine set, can be
+written as $H = \{z \in \R^n \mid a^\top z = b\}$ for a
+non-zero vector $a \in \R^n$ and scalar $b$.
+
+$a$ is the \textbf{normal vector} of the hyperplane. For any
+two vectors $z^1, z^2 \in H$, we have
+$a \perp (z^1 - z^2)$.
+
+Hyperplanes divide $\R^n$ into half-spaces:
+$H_- = \{x \mid a^\top x \leq b\}$ and
+$H_+ = \{x \mid a^\top x \geq b\}$.
+
+\textbf{Supporting hyperplane theorem}: For a convex set
+$C$ and boundary point $z \in \partial C$, we can always
+find a supporting hyperplane
+$H = \{x \in \R^n \mid a^\top x = b\}$ satisfying: (1)
+$z \in H$, (2) $C \subseteq H_-$, where
+$H_- = \{x \in \R^n \mid a^\top x \leq b\}$.
+
+\textbf{Separating hyperplane}: A hyperplane
+$H = \{x \in \R^n \mid a^\top x = b\}$ separates
+$C_1$ and $C_2$ if (1) $C_1 \subseteq H_-$, where
+$H_- = \{x \mid a^\top x \leq b\}$, (2)
+$C_2 \subseteq H_+$, where $H_+ = \{x \mid a^\top x \geq b\}$.
+
+If $H \cap C_1 = H \cap C_2 = \emptyset$, then $H$ strictly
+separates $C_1$ and $C_2$.
+
+\textbf{Separating hyperplane theorem}: Assume $C_1, C_2$
+are convex. Two statements: (1) If
+$C_1 \cap C_2 = \emptyset$, then a separating hyperplane
+exists. (2) If $C_1 \cap C_2 = \emptyset$, $C_1$ and $C_2$
+are closed, and either $C_1$ or $C_2$ are bounded, then a
+strictly separating hyperplane exists.

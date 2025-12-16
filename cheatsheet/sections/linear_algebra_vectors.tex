@@ -1,0 +1,82 @@
+\section{Linear Algebra -- Vectors}
+
+\subsection{Vector Spaces \& Subspaces}
+$\R^n$: space of vectors with $n$ elements. Vectors
+$v^{(1)},\ldots,v^{(m)} \in \R^n$ are \textbf{linearly
+independent} if $\sum_i \alpha_i v^{(i)} = 0$ implies all
+$\alpha_i = 0$.
+
+\textbf{Subspace} $\mathcal{S} \subseteq \R^n$: for all
+$x,y \in \mathcal{S}$ and scalars $\alpha,\beta$, have
+$\alpha x + \beta y \in \mathcal{S}$.
+
+\textbf{Span}: $\text{span}(v^{(1)},\ldots,v^{(m)})$ = all
+linear combos of $v^{(1)},\ldots,v^{(m)}$.
+
+\textbf{Basis}: $v^{(1)},\ldots,v^{(d)}$ is a basis for
+$\mathcal{S}$ if (1) linearly independent, (2) for all
+$x \in \mathcal{S}$, $\exists$ scalars $\alpha_i$ s.t.
+$x = \sum_i \alpha_i v^{(i)}$.
+
+\textbf{Dimension}: number of vectors in basis = $d$.
+
+\textbf{Affine set}: $\mathcal{X} \subseteq \R^n$ is affine
+if $\exists$ subspace $\mathcal{S}$ and vector $v^{(0)}$
+s.t. $\mathcal{X} = v^{(0)} + \mathcal{S}$ (add $v^{(0)}$
+to all vectors in $\mathcal{S}$). To prove affine, show
+$x^{(0)} \perp \mathcal{S}$ is a subspace.
+
+\subsection{Inner Product \& Orthogonality}
+\textbf{Inner product}: $\langle x,y \rangle = x^\top y =
+y^\top x = x_1 y_1 + \cdots + x_n y_n$.
+
+$\langle x,y \rangle = \|x\|_2 \|y\|_2 \cos(\theta)$, where
+$\theta$ is angle between $x$ and $y$.
+
+\textbf{Orthogonal}: $x \perp y$ if
+$\langle x,y \rangle = 0$.
+
+$d$ vectors $x^{(1)},\ldots,x^{(d)}$ are \textbf{mutually
+orthogonal} if $\langle x^{(i)}, x^{(j)} \rangle = 0$ for
+all $i \neq j$ (guarantees linear independence).
+
+\textbf{Orthonormal}: mutually orthogonal and
+$\|x^{(i)}\|_2 = 1$ for all $i$.
+
+\subsection{Vector Norms}
+A function $\|\cdot\|: \R^n \to \R$ is a \textbf{norm} if:
+\begin{itemize}
+\item $\|x\| \geq 0$ for all $x$ and $\|x\| = 0$ iff $x=0$
+\item $\|x+y\| \leq \|x\| + \|y\|$ for all $x,y$
+\item $\|\alpha x\| = |\alpha| \|x\|$ for all
+  $\alpha \in \R$, $x \in \R^n$
+\end{itemize}
+
+\textbf{$\ell_p$ norm} ($1 \leq p < \infty$):
+$\|x\|_p = (|x_1|^p + \cdots + |x_n|^p)^{1/p}$.
+
+Special cases: $\|x\|_1 = |x_1| + \cdots + |x_n|$,
+$\|x\|_2 = \sqrt{x^\top x}$.
+
+$\ell_0$ ``norm'': $\|x\|_0$ = \# of non-zero elements
+(not a true norm).
+
+For arbitrary $x \in \R^n$: $\|x\|_2^2 = x^\top x$.
+
+\subsection{Projections}
+\textbf{Projection} of $x$ onto subspace $\mathcal{S}$:
+$\Pi_\mathcal{S}(x) = \argmin_{y \in \mathcal{S}} \|y - x\|$.
+
+Unique solution $y^* = \Pi_\mathcal{S}(x)$ exists and is
+or $(x - y^*) \perp \mathcal{S}$.
+
+For projection onto affine space: $(x - y^*) \perp (y - y^*)$
+for all $y \in \mathcal{S}$.
+
+\textbf{Projection onto 1-D subspace}
+$\mathcal{S} = \text{span}(v)$:
+$\Pi_\mathcal{S}(x) = \frac{\langle x,v \rangle}{\|v\|^2} v$.
+
+\textbf{Projection onto subspace with orthonormal basis}
+$x^{(1)},\ldots,x^{(d)}$: $\Pi_\mathcal{S}(x) =
+\sum_{i=1}^d \langle x,x^{(i)} \rangle x^{(i)}$.

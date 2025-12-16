@@ -1,0 +1,159 @@
+\section{Duality}
+
+\subsection{Weak Duality}
+In the context of duality, the original problem is called
+the \textit{primal problem}. We call its optimal objective
+$p^* := f_0(x^*)$ the \textit{primal solution}.
+
+Consider arbitrary $\mu \in \R^k$ and $\lambda \in \R^m$
+where $\lambda \geq 0$. It holds that
+$\min_x L(x,\lambda,\mu) \leq p^*$.
+
+Hence, to find a meaningful lower bound to $p^*$, we can
+solve
+$\max_{\mu \in \R^k, \lambda \in \R^m} \min_x L(x,\lambda,\mu)$
+subject to $\lambda \geq 0$.
+
+We define $d(\lambda,\mu) = \min_x L(x,\lambda,\mu)$ as the
+\textbf{dual function}. We can then reformulate the lower
+bound optimization problem as the maximization problem
+$d^* := \max_{\mu \in \R^k, \lambda \in \R^m}
+d(\lambda,\mu)$ subject to $\lambda \geq 0$,
+
+which we refer to as the \textit{dual problem}. Its optimal
+objective $d^*$ is called the \textit{dual solution}.
+
+It holds that $d^* \leq p^*$. The value of $p^* - d^*$ is
+called the \textbf{duality gap}.
+
+Since $d(\lambda,\mu)$ is a point-wise minimum of affine
+functions, it is concave no matter whether the primal
+problem is convex or not, and therefore the dual problem is
+always a convex optimization problem.
+
+Hence, leveraging weak duality, we can use convex
+optimization to obtain a lower bound to a hard, potentially
+non-convex problem.
+
+\subsection{Strong Duality}
+If it holds that $p^* = d^*$, i.e., duality gap is zero,
+then \textit{strong duality} holds.
+
+If the primal problem is convex and Slater's condition
+holds, then
+
+Strong duality holds.
+
+The KKT conditions of the primal problem simultaneously
+solve the primal problem and the dual problem. I.e., $x^*$
+solves the primal problem and $(\lambda^*, \mu^*)$ solves
+the dual problem.
+
+If $x^*$ is an arbitrary optimal solution to the primal
+problem and $(\lambda^*, \mu^*)$ is an arbitrary optimal
+solution to the dual problem, then $(x^*, \lambda^*, \mu^*)$
+satisfies the primal problem's KKT conditions.
+
+\subsection{Dual of LP and QP}
+\textbf{The dual of an LP is also an LP.} Specifically, for
+some $a_0 \in \R^n$, $A \in \R^{m \times n}$,
+$b \in \R^m$, $C \in \R^{k \times n}$, and $d \in \R^k$,
+consider the LP $\min_{x \in \R^n} a_0^\top x$ subject to
+$Ax \leq b$ and $Cx = d$.
+
+The dual problem is
+$\max_{\lambda \in \R^m, \mu \in \R^k}
+-\lambda^\top b - \mu^\top d$ subject to
+$a_0 + A^\top \lambda + C^\top \mu = 0$ and $\lambda \geq 0$.
+
+\textbf{The dual of a QP is also a QP.} Specifically, for
+some $P_0 \in \mathbb{S}^n_{++}$, $q_0 \in \R^n$,
+$r_0 \in \R$, $A \in \R^{m \times n}$, $b \in \R^m$,
+$C \in \R^{k \times n}$, and $d \in \R^k$, consider the QP
+$\min_{x \in \R^n} x^\top P_0 x + q_0^\top x + r_0$ subject
+to $Ax \leq b$ and $Cx = d$.
+
+The dual problem is
+$\max_{\lambda \in \R^m, \mu \in \R^k} -\frac{1}{4}
+(q_0 + A^\top \lambda + C^\top \mu)^\top P_0^{-1}
+(q_0 + A^\top \lambda + C^\top \mu) - \lambda^\top b -
+\mu^\top d$ subject to $\lambda \geq 0$.
+
+As a special case for QP, consider the problem of finding
+the minimum-norm solution of a system of equations, i.e.,
+$\min_x \|x\|_2^2$ subject to $Ax = b$ (A has full row
+rank). The dual problem is $\max_\mu -\frac{1}{4} \mu^\top
+AA^\top \mu - b^\top \mu$. By Lagrangian stationarity,
+$x^* = -\frac{1}{2} A^\top \mu^*$. Setting the gradient of
+the dual problem objective to zero gives
+$\mu^* = -2(AA^\top)^{-1} b$.
+
+\subsection{Farkas' Lemma}
+Suppose that we want to show that the set
+$\left\{x \in \R^n \mid \begin{array}{l} f_i(x) \leq 0, \\
+h_j(x) = 0, \end{array} \begin{array}{l} i = 1,\ldots,k \\
+j = 1,\ldots,m \end{array} \right\}$ is empty.
+
+We can consider the optimization problem $\min_x 0$ subject
+to $f_i(x) \leq 0$ for all $i$ and $h_j(x) = 0$ for all $j$.
+Next, we find the dual function of this optimization problem
+$d(\lambda,\bar{\mu})$. Suppose that we can find some
+$(\hat{\lambda},\hat{\mu})$ such that
+$d(\hat{\lambda},\hat{\mu}) > 0$, then the optimal objective
+of the primal problem is $+\infty$, and hence the set of
+interest is empty.
+
+For linear case we have \textbf{Farkas' Lemma} as following.
+Equations $Ax = b$ and $x \geq 0$ have no solutions if and
+only if there is a solution $\mu$ to $A^\top \mu \leq 0$ and
+$b^\top \mu < 0$.
+
+\subsection{Constraint Sensitivity Analysis}
+We are interested in comparing the optimization problem
+$\min f_0(x)$ subject to $f_i(x) \leq 0$ for
+$i = 1,\ldots,k$ and $h_j(x) = 0$ for $j = 1,\ldots,m$
+
+with the problem that has perturbed constraints
+$\min f_0(x)$ subject to $f_i(x) \leq v_i$ for
+$i = 1,\ldots,k$ and $h_j(x) = w_j$ for $j = 1,\ldots,m$,
+
+where each $v_i$ and $w_j$ is some scalar.
+
+Denote the optimal objective value of the perturbed problem
+as $p^*(v,w)$. The optimal objective of the original problem
+is $p^*(0,0)$. If the problem is infeasible for some
+$(v,w)$, then $p^*(v,w) = +\infty$.
+
+We then have the following properties.
+
+$p^*(v,w)$ is a convex function of $v$ and $w$.
+
+Assume Slater's condition holds. If $p^*(v,w)$ is
+differentiable at $(0,0)$, then the Lagrangian multipliers
+$(\lambda^*, \mu^*)$ of the original problem satisfies
+$\lambda_i^* = -\frac{\partial p^*(0,0)}{\partial v_i}$ for
+all $i$ and $\mu_j^* = -\frac{\partial p^*(0,0)}
+{\partial w_j}$ for all $j$.
+
+As a result, it holds that
+$p^*(v,w) \approx p^*(0,0) - \sum_i \lambda_i^* v_i -
+\sum_j \mu_j^* w_j$.
+
+This is the first-order Taylor's approximation for
+$p^*(v,w)$. Given $x^*$ (which can be used to compute
+$p^*(0,0)$), $\lambda^*$ and $\mu^*$ of the original
+unperturbed problem, this approximation can be computed
+efficiently.
+
+If $\lambda_i^* = 0$ for some $i$ or $\mu_j^* = 0$ for some
+$j$, then changing the corresponding constraint a little
+does not affect the optimal objective. Hence, those
+constraints can be eliminated.
+
+If $\lambda_i^*$ or $\mu_j^*$ is small, then the
+optimization problem is not sensitive to the associated
+constraints.
+
+If $\lambda_i^*$ or $\mu_j^*$ is large, then the
+optimization problem is highly sensitive to the associated
+constraints.

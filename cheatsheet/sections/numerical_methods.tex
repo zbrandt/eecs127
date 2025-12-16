@@ -1,0 +1,193 @@
+\section{Numerical Algorithms \& Applications}
+
+\subsection{Gradient \& Newton's Methods}
+The gradient method is a first-order method, whereas
+Newton's method is second-order. They apply to uni-variate
+and multi-variate optimization problems. Specifically,
+consider the problem $\min_{x \in \R^n} f(x)$.
+
+\textbf{Descent algorithm}: An iterative algorithm that
+generates a sequence $x^{(0)}, x^{(1)}, x^{(2)}, \ldots$ in
+a way that $f(x^{(k+1)}) < f(x^{(k)})$ for
+$k = 0, 1, 2, \ldots$
+
+\textbf{Descent direction}: At a point $x \in \R^n$,
+$\Delta x$ is a descent direction if
+$\nabla f(x)^\top \Delta x < 0$.
+
+Using descent directions guarantees that
+$f(x^{(k-1)}) < f(x^{(k)})$ for all small enough step sizes
+$s^{(k)}$.
+
+A family of optimization algorithms can be designed with
+descent directions: starting from $x^{(0)}$ as the initial
+guess, the $k$th iteration is
+$x^{(k+1)} \leftarrow x^{(k)} - s^{(k)} \Delta x^{(k)}$
+(this is called the update rule), where $\Delta x^{(k)}$ is
+a descent direction w.r.t. $x^{(k)}$, and $s^{(k)}$ is the
+step size for the $k$th iteration.
+
+\textbf{Gradient method}:
+$x^{(k+1)} \leftarrow x^{(k)} - s^{(k)} \nabla f(x^{(k)})$.
+Here, we use $-\nabla f(x^{(k)})$, which is a descent
+direction when $\nabla f(x^{(k)}) \neq 0$, as
+$\Delta x^{(k)}$.
+
+\textbf{Newton's method}:
+$x^{(k+1)} \leftarrow x^{(k)} - s^{(k)} (\nabla^2 f(x^{(k)}))^{-1}
+\nabla f(x^{(k)})$. Here, we use
+$-(\nabla^2 f(x^{(k)}))^{-1} \nabla f(x^{(k)})$, which is
+another descent direction when
+$\nabla^2 f(x^{(k)}) \succ 0$, as $\Delta x^{(k)}$.
+
+If $\nabla f(x^{(k)})$ is zero, then $x^{(k)}$ is a
+stationary point and we stop the algorithm.
+
+\textbf{Why gradient/Newton?} The gradient direction
+minimizes a local first-order Taylor approximation of the
+objective function. Similarly, the Newton direction
+minimizes a second-order approximation, and therefore
+Newton's method can solve certain quadratic problems in one
+iteration with $s^{(k)} = 1$.
+
+Newton's method converges faster than the gradient method,
+but each iteration takes longer.
+
+For an iterative optimization algorithm with step sizes
+$s^{(0)}, s^{(1)}, \ldots$, if $\|x^{(k)} - x^*\|$ is
+greater than some positive threshold at some $k$, the
+algorithm terminates and we accept $x^{(k)}$ as a solution.
+However, since the true $x^*$ is unknown, we need to
+estimate $\|x^{(k)} - x^*\|$.
+
+\subsection{Analysis on Gradient Algorithm}
+Given an initial guess $x^{(0)}$, define the set
+$\mathcal{S} := \{x \in \R^n | f(x) \leq f(x^{(0)})\}$. It
+is said that $\nabla f$ is Lipschitz continuous with
+constant $L > 0$ if
+$\|\nabla f(x) - \nabla f(y)\| \leq L \|x - y\|$ for all
+$x,y \in \mathcal{S}$. If $f$ is twice continuous
+differentiable and $\mathcal{S}$ is compact, then $L$
+exists.
+
+Suppose that $L$ exists. For the gradient algorithm,
+consider an arbitrary $\epsilon > 0$. If the step size
+$s^{(0)}, s^{(1)}, \ldots$ are chosen in the interval
+$(\frac{\epsilon}{L}, \frac{2-\epsilon}{L})$, then
+$\|\nabla f(x^{(k)})\| \to 0$ as $k \to \infty$.
+
+This means that the gradient algorithm converges to a
+stationary point (which can be a local minimum, a local
+maximum, or a saddle point).
+
+If $f$ is convex, $\nabla f(x^*) = 0$ iff $x^*$ is the
+global minimum. Hence, gradient algorithm always converges
+to a global minimum of a convex function if $s^{(k)}$ is
+small for all $k$.
+
+\subsection{Low-Rank Matrix Approximation}
+Given a matrix $A \in \R^{m \times n}$, consider the problem
+of finding a low-rank matrix $B \in \R^{m \times n}$ that
+best approximates $A$.
+
+This problem can be formulated as
+$\min_{B \in \R^{m \times n}} \|A - B\|_2$ or
+$\|A - B\|_F$ subject to $\Rank(B) \leq k$.
+
+\textbf{Eckart-Young-Mirsky theorem}:
+
+For a given $k \leq \min(m,n)$, define
+$A_k := \sum_{i=1}^k \sigma_i u^{(i)} v^{(i)\top}$
+constructed with the top $k$ singular values of $A$ and the
+left/right singular vectors. $A_k$ has rank at most $k$.
+Intuitively, we ``chop off'' the smaller singular values
+starting from the $k+1$-th largest.
+
+$B = A_k$ is an optimal solution to both optimization
+problems (Frobenius or $\ell_2$-induced norm).
+
+Suppose $k < \Rank(A)$. The optimal solution is unique if
+and only if $\sigma_k \neq \sigma_{k+1}$, i.e., the $k$-th
+largest singular value of $A$ is not equal to the $k+1$.
+
+The relative Frobenius norm approximation error
+$\frac{\|A - A_k\|_F}{\|A\|_F^2}$ is equal to
+$\frac{\sigma_{k+1}^2 + \cdots + \sigma_r^2}{\sigma_1^2 +
+\cdots + \sigma_r^2}$, where $r = \Rank(A)$.
+
+The relative $\ell_2$-induced norm approximation error
+$\frac{\|A - A_k\|_2}{\|A\|_2}$ is equal to
+$\frac{\sigma_{k+1}}{\sigma_1}$.
+
+\subsection{Principal Component Analysis (PCA)}
+Given points $x^1,\ldots,x^m \in \R^n$, first center data
+points to $\bar{x}^1,\ldots,\bar{x}^m$ by subtracting
+$\frac{1}{m} \sum_{i=1}^m x^i$.
+
+Compute the left singular vectors $v^1,\ldots,v^m$.
+
+Most variation is along $v^1$ (explains $\sigma_1^2 / \sum_i
+\sigma_i^2$), second most along $v^2$, etc.
+
+\subsection{Robust PCA}
+We aim to decompose $Y \in \R^{m \times n}$ as the sum of a
+low-rank matrix $X \in \R^{m \times n}$ and a sparse (most
+entries are zero) matrix $Z \in \R^{m \times n}$. To achieve
+this, we can solve the optimization problem
+$\min_{X \in \R^{m \times n}, Z \in \R^{m \times n}}
+\Rank(X) + \lambda \Card(Z)$ subject to $Y = X + Z$, where
+$\Card(Z)$ is the number of non-zero entries in $Z$ and
+$\lambda > 0$ is a regularization coefficient.
+
+The above problem is non-convex. To this end, we can solve
+the following convex problem as a surrogate:
+$\min_{X \in \R^{m \times n}, Z \in \R^{m \times n}}
+\|X\|_* + \lambda \sum_{i=1}^m \sum_{j=1}^n |Z_{ij}|$
+subject to $Y = X + Z$.
+
+\subsection{Matrix Completion}
+Consider a matrix $X^* = \R^{m \times n}$ whose entries are
+unknown but is known to be low rank. Assume that we measure
+the entries $X^*_{ij}$ only when $(i,j)$ belongs to some
+given set $\mathcal{S}$.
+
+To estimate $X^*$ using the measurements, we can find the
+lowest-rank $X$ whose $(i,j)$ entries match the
+measurements by solving for the optimization problem
+$\min_{X \in \R^{m \times n}} \Rank(X)$ subject to
+$X_{ij} = X^*_{ij}, \forall (i,j) \in \mathcal{S}$.
+
+This problem is non-convex due to the discrete rank function
+in the objective. Over the restricted space
+$\{X \in \R^{m \times n} | \|X\|_2 \leq 1\}$, a convex
+relaxation is
+$\min_{X \in \R^{m \times n}} \|X\|_*$ subject to
+$X_{ij} = X^*_{ij}, \forall (i,j) \in \mathcal{S}$.
+
+\subsection{Compressed Sensing}
+Let $x^* \in \R^n$ denote some states of some system. We
+want to know $x^*$ but can only measure $b := Ax^* \in \R^m$
+for some $m \times n$ matrix $A$. When $m < n$, the linear
+system is underdetermined.
+
+Suppose that $x^*$ is known to be sparse. Then $x^*$ can be
+estimated via the optimization problem $\min_x \|x\|_0$
+subject to $Ax = b$.
+
+This problem is non-convex, but can be approximated with its
+convex relaxation over the restricted space of
+$-1 \leq x \leq 1$: $\min_x \|x\|_1$ subject to $Ax = b$,
+
+which can be reformulated as an LP
+$\min_{x \in \R^n, t \in \R^n} \mathbbm{1}_n^\top t$
+subject to $Ax = b$ and $-t \leq x \leq t$, where
+$\mathbbm{1}_n$ denotes the $n$-dimensional all-one column
+vector.
+
+Suppose that our measurements are noisy, i.e.,
+$b = Ax + w$ where $w$ is random (often Gaussian). Then, the
+problem we should solve is $\min_w \|w\|_2^2 +
+\lambda \|x\|_1$ subject to $Ax + w = b$, where
+$\lambda > 0$ is a user-defined balancing constant. This is
+a constrained LASSO problem that can be reformulated as a QP
+(see Section 6.6).
